@@ -10,21 +10,28 @@
     <link rel="stylesheet" href="/stylesheets/style.css">
 </head>
 <body>
+    <div id="load">
+        <div class="loading-left"></div>
+        <div class="loading-right"></div>
+        <canvas id="cvs" width="240" height="240">
+            您的浏览器不支持Canvas,请升级浏览器！
+        </canvas>
+    </div>
   <div id="app">
     <div class="header">
-      <div class="header-body clearfix">
+        <div class="header-body clearfix">
           <a class="header-title" href="/">烟火 Blog</a>
           <ul class="header-nav">
               <li class="active" ><a href="/" target="_self">首页</a></li>
               <li><a href="/article" target="_self">文章</a></li>
               <li><a href="/demo" target="_self">案例</a></li>
-              <li><a href="#" target="_self">留言板</a></li>
+              <li><a href="/board" target="_self">留言板</a></li>
           </ul>
       </div>
     </div>
     <div class="body">
         <div>
-            <h1 class="body-title">WEB__YH</h1>
+            <h1 class="body-title">I am here</h1>
             <p class="body-description">Life is so charming</p>
         </div>
         <div class="body-nav">
@@ -33,5 +40,8 @@
         </div>
     </div>
   </div>
+
+
+  <script type="text/javascript" data-main="/javascripts/home" src="/javascripts/require.min.js"></script>
 </body>
 </html>

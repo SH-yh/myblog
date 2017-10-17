@@ -1,14 +1,21 @@
 @import "reset.css";
 @import "head.css";
+@import "footer.css";
+@import "rowup.css";
 /*container*/
 body {
     width: 100%;
     height: 100%;
-    background: url("../images/bg.gif")
+    background: url("../images/bg.gif");
+}
+.body {
+    overflow: hidden;
+    margin-top: 64px;
 }
 .container {
+    overflow: hidden;
     width: 1280px;
-    margin:20px auto;
+    margin:40px auto;
 }
 .body-article-list{
     float: left;
