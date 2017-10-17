@@ -26,239 +26,53 @@
         <div class="container clearfix">
             <div class="body-article-list">
                 <ul class="article-warp" >
-                    <li class="list-item">
+                    <%for(var i = 0; i < content.length; i++ ){%>
+                        <li class="list-item">
                         <div class="list-item-warp">
                             <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
+                                <h1 class="article-title"><a href="/article/<%=content[i].type%>/<%=content[i].id%>"><%=content[i].title%></a></h1>
                                 <div class="clearfix">
                                     <p class="article-overview">
                                         <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
+                                        <span class="author-name"><%=content[i].author%></span>
                                     </p>
-                                    <p class="article-date">2017.10.15</p>
+                                    <p class="article-date"><%=content[i].data%></p>
                                 </div>
                             </div>
                             <div class="article-body">
                                 <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
+                                    <%-content[i].content%>
                                 </div>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
+                                <a href="#" class="article-type"><%=content[i].type%></a>
                             </div>
                         </div>
                     </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
-                    <li class="list-item">
-                        <div class="list-item-warp">
-                            <div class="article-header">
-                                <h1 class="article-title"><a href="#">你不知道的Css3</a></h1>
-                                <div class="clearfix">
-                                    <p class="article-overview">
-                                        <span class="article-author">作者：</span>
-                                        <span class="author-name">烟火</span>
-                                    </p>
-                                    <p class="article-date">2017.10.15</p>
-                                </div>
-                            </div>
-                            <div class="article-body">
-                                <div class="article-body-content">
-                                    在前面两篇文章《你不知道的CSS（一）》和《你不知道的CSS（二）》中大致介绍了一些CSS方面比较隐晦的但又很实用的技巧。相信这些技巧会为大家在项目实践中带来一定的帮助，本文作为《你不知道的CSS》系列的第三篇文章，将继续在CSS技巧方面进行探讨，不同于前两篇的是，本文将着重介绍CSS中伪类和伪元素在项目中的应用场景。伪类相信大家最熟悉也是用的最多莫过于:hover, :active, :focus之类的，因为这些在平常的项目中太常用了（然而我目前依然见过还有用js去添加.hover类来变化背景色的同学😴）。而伪元素如:before, :after相信大家也用的烂熟了。 当然对于比较常见的伪类（元素）不在本文的讨论范围类，本文主要介绍一些生僻的但是又非常实用的伪类(元素)。CSS的世界已经变天了，抛开过去，拥抱变化吧~
-                                </div>
-                            </div>
-                            <div class="article-footer">
-                                <a href="#" class="article-type">Css3</a>
-                            </div>
-                        </div>
-                    </li>
+                    <%}%>
                 </ul>
             </div>
             <div class="body-classify">
                 <div class="classify-title">文章分类</div>
                 <ul class="article-classify">
+                <%for(var j = 0; j < classify.length; j++){%>
                     <li class="item" >
                         <div>
-                            <a href="#">前端</a>
+                            <a href="#"><%=classify[j].type%></a>
                         </div>
                     </li>
-                    <li class="item child-classify" >
-                        <a href="#">javascript</a>
-                    </li>
+                    <% var children = classify[j].children%>
+                    <%if(children){%>
+                        <% var len = children.length %>
+                        <%for(var k = 0; k < len; k++){%>
+                            <li class="item child-classify">
+                                <div>
+                                    <a href="#"><%=children[k]%></a>
+                                </div>
+                            </li>
+                        <%}%>
+                    <%}%>
+                <%}%>
                 </ul>
             </div>
 
@@ -275,11 +89,6 @@
         <p>博客搭建：node.js + express + mongodb</p>
     </div>
 </div>
-<!--
-<script src="https://code.jquery.com/jquery-1.9.1.min.js"
-        integrity="sha256-wS9gmOZBqsqWxgIVgA8Y9WcQOa7PgSIX+rPA0VL2rbQ="
-        crossorigin="anonymous"></script>
-        -->
 <script data-main="/javascripts/article.js" src="/javascripts/require.min.js"></script>
 </body>
 </html>
