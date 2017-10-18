@@ -25,9 +25,9 @@
     <div class="body">
         <div class="container clearfix">
             <div class="body-article-list">
-                <ul class="article-warp" >
+                <ul class="article-warp" id="article-container">
                     <%for(var i = 0; i < content.length; i++ ){%>
-                        <li class="list-item">
+                    <li class="list-item">
                         <div class="list-item-warp">
                             <div class="article-header">
                                 <h1 class="article-title"><a href="/article/<%=content[i].type%>/<%=content[i].id%>"><%=content[i].title%></a></h1>
@@ -51,6 +51,9 @@
                     </li>
                     <%}%>
                 </ul>
+                <%if(content){%>
+                    <%include paging.ejs%>
+                <%}%>
             </div>
             <div class="body-classify">
                 <div class="classify-title">文章分类</div>
@@ -58,7 +61,7 @@
                 <%for(var j = 0; j < classify.length; j++){%>
                     <li class="item" >
                         <div>
-                            <a href="#"><%=classify[j].type%></a>
+                            <a href="/article/<%=classify[j].mark%>"><%=classify[j].type%></a>
                         </div>
                     </li>
                     <% var children = classify[j].children%>
@@ -67,7 +70,7 @@
                         <%for(var k = 0; k < len; k++){%>
                             <li class="item child-classify">
                                 <div>
-                                    <a href="#"><%=children[k]%></a>
+                                    <a href="/article/<%=children[k].mark%>"><%=children[k].type%></a>
                                 </div>
                             </li>
                         <%}%>
@@ -90,5 +93,29 @@
     </div>
 </div>
 <script data-main="/javascripts/article.js" src="/javascripts/require.min.js"></script>
+<script type="text/template" id="template">
+    <li class="list-item">
+        <div class="list-item-warp">
+            <div class="article-header">
+                <h1 class="article-title"><a href="/article/<{=content.type}>/<{=content.id}>"><<{=content.title}></a></h1>
+                <div class="clearfix">
+                    <p class="article-overview">
+                        <span class="article-author">作者：</span>
+                        <span class="author-name"><{content.author}></span>
+                    </p>
+                    <p class="article-date"><{=content.data}></p>
+                </div>
+            </div>
+            <div class="article-body">
+                <div class="article-body-content">
+                    <{-content.content}>
+                </div>
+            </div>
+            <div class="article-footer">
+                <a href="#" class="article-type"><{=content.type}></a>
+            </div>
+        </div>
+    </li>
+</script>
 </body>
 </html>

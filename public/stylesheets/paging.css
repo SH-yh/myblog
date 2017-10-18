@@ -1,0 +1,23 @@
+.paging {
+    padding: 20px 0;
+    text-align: center;
+}
+.back, .next, .page-container, .page-list{
+    display: inline-block;
+    cursor: pointer;
+}
+.page-container {
+    margin: 0 15px;
+    font-size: 0;
+}
+.page-list {
+    padding: 10px 15px;
+    border-right:1px solid #fff;
+    font-size: 16px;
+    color: #0076A4;
+    background: #fff
+}
+.page-list.pageActive {
+    color: #fff;
+    background: #0076A4;
+}

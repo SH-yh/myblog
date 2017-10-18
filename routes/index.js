@@ -8,14 +8,20 @@ router.get('/', function(req, res, next) {
 });
 /*文章条目显示*/
 router.get('/article', function(req, res, next){
-    controller.renderArticle(req, res, next);
+    controller.renderArticleList(req, res, next);
+});
+/*具体类型文章条目显示*/
+router.get('/article/:type', function(req, res, next){
+    controller.renderArticleList(req, res, next);
 });
 /*文章内容显示*/
-
 router.get('/article/:type/:id', function(req, res, next){
     controller.renderArticleContent(req, res, next);
 });
-
+/*分页功能*/
+router.post('/article/:type/:page', function(req, res, next){
+    controller.replyPaging(req, res, next)
+});
 router.get('/demo', function(req, res, next){
     controller.renderDome(req, res, next);
 });

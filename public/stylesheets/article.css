@@ -2,6 +2,7 @@
 @import "head.css";
 @import "footer.css";
 @import "rowup.css";
+@import "paging.css";
 /*container*/
 body {
     width: 100%;
@@ -101,7 +102,8 @@ body {
     line-height: 70px;
     text-align: center;
 }
-.item{
+.item a {
+    display: block;
     font-size: 16px;
     padding: 15px 32px;
     border-bottom: 1px solid #E0E0E0;
@@ -111,7 +113,8 @@ body {
     cursor: pointer;
     border-right: 4px solid transparent;
 }
-.item:hover{
+.item:hover a{
+    color: #0076A4;
     background:rgba(227, 227, 227, 0.4);
     border-right: 4px solid #0076A4;
 }

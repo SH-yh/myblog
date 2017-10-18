@@ -17,7 +17,6 @@ exports.findDocument = function(collectionName, queryJson, queryConfig, callback
     var queryMount = queryConfig.amount || 0,
         page = queryConfig.skip * queryMount || 0;
     _connecteMongo(function(db){
-        page = page * queryMount;
         db.collection(collectionName).find(queryJson).limit(queryMount).skip(page).toArray(function(err, doc){
             if(err){
                 throw new Error(err);
@@ -25,6 +24,22 @@ exports.findDocument = function(collectionName, queryJson, queryConfig, callback
             }
             if(callback){
                 callback(doc);
+                db.close();
+                return;
+            }
+            db.close();
+        });
+    });
+};
+/*查找总数*/
+exports.findCount = function(collectionName,  queryJson, callback){
+    _connecteMongo(function(db){
+        db.collection(collectionName).count(queryJson,{}, function(err, sum){
+            if(err){
+                throw new Error(err);
+            }
+            if(callback){
+                callback(sum);
                 db.close();
                 return;
             }
