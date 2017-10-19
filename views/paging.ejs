@@ -1,11 +1,11 @@
 <div class="paging">
     <div class="back" id="back">上一页</div>
-    <ul data-type="<%=type%>" data-parentTag="<%=articleType%>" class="page-container" >
-        <%var maxSum = 5;%>
-        <%var sum = pageSum < maxSum ? pageSum : maxSum %>
-        <%for(var i = 0; i < sum; i++){%>
-            <li data-pageNumber=<%=i%> class="page-list<%if(i == 0){%><%=' pageActive'%><%}%>"><%=i+1%></li>
-        <%}%>
-    </ul>
+    <div data-type="<%=type%>" data-parentTag="<%=articleType%>" class="page-container" >
+        <div class="wrap">
+            <input class="select-page" type="text" value="1" />
+            <span class="page-split">/</span>
+            <span class="page-sum"><%=pageSum%></span>
+        </div>
+    </div>
     <div class="next" id="next">下一页</div>
 </div>

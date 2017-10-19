@@ -49,17 +49,17 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
         paging: function(){
             var defaultBaCK = '#back',
                 defaultNext = "#next",
-                defaultList = '.page-list',
-                defaultActive = 'pageActive',
+                targetItem = $('.select-page'),
                 defaultUrl = '',
+                mark = false, //消失
+                born = true,
                 defaultType = $('.page-container').attr('data-type') || "all",
                 defaultParent = $('.page-container').attr('data-parentTag'),//用来确定是不是父标签
+                pageSum = parseInt($('.page-sum').html());
                 queryJson = {};
             var back = $(defaultBaCK),
                 next = $(defaultNext),
-                list = $(defaultList),
-                pageIndex = 0,
-                btnLength = list.length;
+                pageIndex = 0;
             //默认渲染模板
             var defalutTemplete = '<li class="list-item">'+
                 '<div class="list-item-warp">'+
@@ -85,28 +85,61 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
             '</li>';
             back.on('click', trunPage);
             next.on('click', trunPage);
-            list.on('click', btnPaging);
+            targetItem.on('change', changeTargetVal);
             //改变页码
             function trunPage(e){
                 var target = e.target;
                 pageIndex = target == back[0] ?  pageIndex-1 : pageIndex+1;
-                pageIndex = pageIndex % btnLength;
+                pageIndex = pageIndex % pageSum;
                 if(pageIndex < 0){
-                    pageIndex = btnLength - 1;
+                    pageIndex = pageSum - 1;
                 }
-                changeBck();
+                changeNumber();
                 //进行ajax传输
                 fetch();
             }
-            function btnPaging(){
-                pageIndex = $(this).attr("data-pageNumber");
-                changeBck();
+            function changeTargetVal(){
+                var page = $(this).val();
+                if(page > pageSum){
+                    if(born){
+                        generWarn();
+                    }else{
+                        $('#warn').fadeIn(500);
+                        mark = !mark;
+                    }
+                    return;
+                }
+                pageIndex = page - 1;
                 fetch();
             }
+            function displayWarn(id){
+                var warn =  $("#"+id);
+                warn.on('click',function(){
+                    if(!mark) {
+                        $(this).fadeOut(500);
+                    }else{
+                        $(this).fadeIn(500);
+                    }
+                    mark = !mark;
+                });
+            }
+            function generWarn(){
+                if(born){
+                    var id = 'warn';
+                    var div = document.createElement('div');
+                    div.id = id;
+                    div.style.cssText = "position:fixed;width:200px;height:80px;top:0;border:1px solid #333;"+
+                        "right:0;bottom:0;left:0;padding:10px 25px;margin:auto;background:#0076A4;text-align:center;"+
+                        "line-height:80px;color:#fff";
+                    div.innerHTML = "无此页，请确认后重新输入";
+                    $('body').append(div);
+                    displayWarn(id);
+                    born = false;
+                }
+            }
             //改变按钮颜色
-            function changeBck(){
-                var targetItem = $(list[pageIndex]);
-                targetItem.addClass(defaultActive).siblings().removeClass(defaultActive);
+            function changeNumber(){
+                targetItem.val(pageIndex+1);
             }
             //ajax获取分页数据
             function fetch(){
@@ -130,7 +163,6 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                                 });
                                 container.append(html);
                             }
-
                         },
                         error: function(err){
                             throw new Error(err);
