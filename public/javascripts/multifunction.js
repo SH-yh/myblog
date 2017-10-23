@@ -100,25 +100,42 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
             }
             function changeTargetVal(){
                 var page = $(this).val();
-                if(page > pageSum){
+                if(cheackInput(page, pageSum)){
                     if(born){
                         generWarn();
                     }else{
                         $('#warn').fadeIn(500);
                         mark = !mark;
                     }
+                    targetItem.attr('disabled', true);
                     return;
                 }
                 pageIndex = page - 1;
                 fetch();
+            }
+            function cheackInput(val, target){
+                var min = 0;
+                if(val > target){
+                    return true;
+                }else if(val <= min){
+                    return true;
+                }else if(String(val).indexOf('.') != -1){
+                    return true;
+                }else if(isNaN(val)){
+                    return true;
+                }else {
+                    return false;
+                }
             }
             function displayWarn(id){
                 var warn =  $("#"+id);
                 warn.on('click',function(){
                     if(!mark) {
                         $(this).fadeOut(500);
+                        targetItem.attr('disabled', false);
                     }else{
                         $(this).fadeIn(500);
+                        targetItem.attr('disabled', true);
                     }
                     mark = !mark;
                 });
@@ -130,8 +147,8 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                     div.id = id;
                     div.style.cssText = "position:fixed;width:200px;height:80px;top:0;border:1px solid #333;"+
                         "right:0;bottom:0;left:0;padding:10px 25px;margin:auto;background:#0076A4;text-align:center;"+
-                        "line-height:80px;color:#fff";
-                    div.innerHTML = "无此页，请确认后重新输入";
+                        "line-height:40px;color:#fff";
+                    div.innerHTML = "查无此页，请重新输入<br/>点击隐藏";
                     $('body').append(div);
                     displayWarn(id);
                     born = false;
