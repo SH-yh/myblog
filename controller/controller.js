@@ -11,19 +11,24 @@ exports.renderArticleList = function(req, res, next){
         type =  req.params.type || "";
     model.findDocument('classify', {}, {}, function(classify){
         var queryJson = assit.getType(type, classify);
-        var articleType = queryJson.type ? 'type' : 'parentTag';
-        model.findCount(defaultDocument, queryJson, function(sum){
-            model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, function(doc) {
-                res.render('article', {
-                    "content": doc,
-                    "classify": classify,
-                    "pageSum": Math.ceil(sum / defaultAmount),
-                    "articleType": articleType,
-                    "type": type
-                });
-                res.end();
-            })
-        });
+        if(queryJson){
+            var articleType = queryJson.type ? 'type' : 'parentTag';
+            model.findCount(defaultDocument, queryJson, function(sum){
+                model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, function(doc) {
+                    res.render('article', {
+                        "content": doc,
+                        "classify": classify,
+                        "pageSum": Math.ceil(sum / defaultAmount),
+                        "articleType": articleType,
+                        "type": type
+                    });
+                    res.end();
+                })
+            });
+        }else {
+            res.render('404');
+            res.end();
+        }
     });
 };
 /*渲染文章内容*/

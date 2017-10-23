@@ -9,7 +9,7 @@ exports.getType = function(item, target){
         }else if(resulte == -1){
             return {type: item}
         }else {
-            return {};
+            return false;
         }
     }else{
         return {};
