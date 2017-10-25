@@ -25,7 +25,7 @@
     <div class="body">
         <div class="container clearfix">
             <div class="body-article-list">
-                <ul class="article-warp" id="article-container">
+                <ul class="article-warp" id="content-container">
                     <%for(var i = 0; i < content.length; i++ ){%>
                     <li class="list-item">
                         <div class="list-item-warp">
@@ -51,7 +51,7 @@
                     </li>
                     <%}%>
                 </ul>
-                <%if(content[0]){%>
+                <%if(pageSum){%>
                     <%include paging.ejs%>
                 <%}%>
             </div>

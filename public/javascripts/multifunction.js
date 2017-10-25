@@ -46,7 +46,7 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                 $(window).scrollTop(0);
             });
         },
-        paging: function(){
+        paging: function(defalutTemplete, url, amount){
             var defaultBaCK = '#back',
                 defaultNext = "#next",
                 targetItem = $('.select-page'),
@@ -61,31 +61,10 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                 next = $(defaultNext),
                 pageIndex = 0;
             //默认渲染模板
-            var defalutTemplete = '<li class="list-item">'+
-                '<div class="list-item-warp">'+
-                    '<div class="article-header">'+
-                        '<h1 class="article-title">'+
-                            '<a href="/article/<%=content.type%>/{{=content.id}}"><{=content.title}></a>'+
-                        '</h1>'+
-                        '<div class="clearfix">'+
-                            '<p class="article-overview">'+
-                                '<span class="article-author">作者：</span>'+
-                                '<span class="author-name"><{=content.author}></span>'+
-                            '</p>'+
-                            '<p class="article-date"><{=content.data}></p>'+
-                        '</div>'+
-                    '</div>'+
-                    '<div class="article-body">'+
-                        '<div class="article-body-content"><{=content.content}></div>'+
-                    '</div>'+
-                    '<div class="article-footer">'+
-                        '<a href="#" class="article-type"><{=content.type}></a>'+
-                    '</div>'+
-                '</div>'+
-            '</li>';
             back.on('click', trunPage);
             next.on('click', trunPage);
             targetItem.on('change', changeTargetVal);
+            targetItem.on('blur', changeTargetVal);
             //改变页码
             function trunPage(e){
                 var target = e.target;
@@ -148,7 +127,7 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                     div.style.cssText = "position:fixed;width:200px;height:80px;top:0;border:1px solid #333;"+
                         "right:0;bottom:0;left:0;padding:10px 25px;margin:auto;background:#0076A4;text-align:center;"+
                         "line-height:40px;color:#fff";
-                    div.innerHTML = "查无此页，请重新输入<br/>点击隐藏";
+                    div.innerHTML = "查无此页，请重新输入<br/>点击重新输入";
                     $('body').append(div);
                     displayWarn(id);
                     born = false;
@@ -160,8 +139,9 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
             }
             //ajax获取分页数据
             function fetch(){
-                defaultUrl = '/article/'+defaultType+'/'+pageIndex;
+                defaultUrl = '/'+url+'/'+defaultType+'/'+pageIndex;
                 queryJson[defaultParent] = defaultType;
+                queryJson.amount = amount;
                 queryJson.page = pageIndex;
                 $.ajax(
                     {
@@ -171,7 +151,7 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                         success: function(data){
                             var doc = data.doc,
                                 len = doc.length,
-                                container = $('#article-container');
+                                container = $('#content-container');
                             var compiled = _.template(defalutTemplete);
                             container.html('');
                             for(var i = 0; i < len; i++){

@@ -1,6 +1,7 @@
 @import url("reset.css");
 @import url("head.css");
 @import url('footer.css');
+@import url('paging.css');
 body {
     width: 100%;
     height: 100%;

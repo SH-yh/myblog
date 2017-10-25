@@ -19,7 +19,7 @@ router.get('/article/:type/:id', function(req, res, next){
     controller.renderArticleContent(req, res, next);
 });
 /*分页功能*/
-router.post('/article/:type/:page', function(req, res, next){
+router.post('/:typeTag/:type/:page', function(req, res, next){
     controller.replyPaging(req, res, next)
 });
 router.get('/demo', function(req, res, next){

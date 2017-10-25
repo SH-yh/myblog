@@ -19,7 +19,7 @@ exports.renderArticleList = function(req, res, next){
                         "content": doc,
                         "classify": classify,
                         "pageSum": Math.ceil(sum / defaultAmount),
-                        "articleType": articleType,
+                        "typeTag": articleType,
                         "type": type
                     });
                     res.end();
@@ -43,14 +43,15 @@ exports.renderArticleContent = function(req, res, next){
 };
 /*分页功能*/
 exports.replyPaging = function(req, res, next){
-    var defaultAmount = 6,
-        defaultDocument = "article";
+    var defaultDocument = req.params.typeTag || "article";
     var queryBody = req.body,
-        page = parseInt(queryBody.page);
+        page = parseInt(queryBody.page),
+        defaultAmount = parseInt(queryBody.amount);
     delete queryBody.page;
+    delete queryBody.amount;
     var queryJson = queryBody.parentTag == "all" ? {} : queryBody;
-    model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, function(classify){
-        res.json({doc: classify});
+    model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, function(content){
+        res.json({doc: content});
     });
 };
 exports.renderHome = function(req, res, next){
@@ -58,8 +59,21 @@ exports.renderHome = function(req, res, next){
     res.end();
 };
 exports.renderDome = function(req, res, next){
-    res.render('demo');
-    res.end();
+    var defaultCollection = "cases",
+        defaultAmount = 8,
+        page = req.query.page || 0,
+        queryJson = {};
+    model.findCount(defaultCollection, {}, function(count){
+        model.findDocument(defaultCollection, queryJson, {amount: defaultAmount, skip: page}, function(content){
+            res.render('demo', {
+                "pageSum" : Math.ceil(count / defaultAmount),
+                "typeTag": "parentTag",
+                "type" : "",
+                "content" : content
+            });
+            res.end();
+        });
+    });
 };
 exports.renderBoard = function(req, res, next){
     res.render('board');

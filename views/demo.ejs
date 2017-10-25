@@ -23,68 +23,30 @@
         </div>
     </div>
     <div class="body">
-        <ul class="demo-warp clearfix">
+        <ul class="demo-warp clearfix" id="content-container">
+            <%var len = content.length%>
+            <%for(var i = 0; i < len; i++){%>
             <li class="demo-item">
-                <div class="item-head">
-                    <a href="#">
-                        <img src="/images/demo/demo1.png" alt="">
-                    </a>
-                </div>
-                <div class="item-body">
-                    <h1 class="demo-title">HTML5 音乐播放器</h1>
-                    <p class="demo-describe">一款基于HTML5、Css3的列表式音乐播放器，包含列表，音量，进度，时间，歌词展示以及播放模式等功能，不依赖任何库</p>
-                </div>
+                <a href=<%=content[i].src%>>
+                    <div class="item-head">
+                            <img src=<%=content[i].imgSrc%> alt=<%=content[i].title%>>
+                    </div>
+                    <div class="item-body">
+                        <h1 class="demo-title"><%=content[i].title%></h1>
+                        <p class="demo-describe"><%=content[i].introduce%></p>
+                    </div>
+                </a>
             </li>
-            <li class="demo-item">
-                <div class="item-head">
-                    <a href="#">
-                        <img src="/images/demo/demo1.png" alt="">
-                    </a>
-                </div>
-                <div class="item-body">
-                    <h1 class="demo-title">HTML5 音乐播放器</h1>
-                    <p class="demo-describe">一款基于HTML5、Css3的列表式音乐播放器，包含列表，音量，进度，时间，歌词展示以及播放模式等功能，不依赖任何库</p>
-                </div>
-            </li>
-            <li class="demo-item">
-                <div class="item-head">
-                    <a href="#">
-                        <img src="/images/demo/demo1.png" alt="">
-                    </a>
-                </div>
-                <div class="item-body">
-                    <h1 class="demo-title">HTML5 音乐播放器</h1>
-                    <p class="demo-describe">一款基于HTML5、Css3的列表式音乐播放器，包含列表，音量，进度，时间，歌词展示以及播放模式等功能，不依赖任何库</p>
-                </div>
-            </li>
-            <li class="demo-item">
-                <div class="item-head">
-                    <a href="#">
-                        <img src="/images/demo/demo1.png" alt="">
-                    </a>
-                </div>
-                <div class="item-body">
-                    <h1 class="demo-title">HTML5 音乐播放器</h1>
-                    <p class="demo-describe">一款基于HTML5、Css3的列表式音乐播放器，包含列表，音量，进度，时间，歌词展示以及播放模式等功能，不依赖任何库</p>
-                </div>
-            </li>
-            <li class="demo-item">
-                <div class="item-head">
-                    <a href="#">
-                        <img src="/images/demo/demo1.png" alt="">
-                    </a>
-                </div>
-                <div class="item-body">
-                    <h1 class="demo-title">HTML5 音乐播放器</h1>
-                    <p class="demo-describe">一款基于HTML5、Css3的列表式音乐播放器，包含列表，音量，进度，时间，歌词展示以及播放模式等功能，不依赖任何库</p>
-                </div>
-            </li>
-
+            <%}%>
         </ul>
+        <%if(pageSum){%>
+            <%include paging.ejs%>
+        <%}%>
     </div>
     <div class="footer">
         <p>博客搭建：node.js + express + mongodb</p>
     </div>
 </div>
+<script data-main = "/javascripts/cases.js" src="/javascripts/require.min.js"></script>
 </body>
 </html>
