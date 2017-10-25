@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type = "image/ico" href="/images/favicon.ico">
+    <title>登录</title>
+    <link rel="stylesheet" href="/stylesheets/admin/login.css">
+</head>
+<body>
+    <div class="container">
+        <h3 class="title">登录</h3>
+        <div class="login-body">
+            <form id = "form" action="/admin/login" method="post">
+                <div class = "user_name wrap">
+                    <label for = "userName">用户名</label>
+                    <input id = "userName" name="name" type="text" placeholder="请输入您的账号">
+                </div>
+                <div class = "user_password wrap">
+                    <label for = "userPassword">密码</label>
+                    <input id = "userPassword" name = "password" type="password" placeholder="请输入您的密码">
+                </div>
+                <%if(error){%>
+                    <p class="error">账号密码不匹配</p>
+                <%}%>
+                <button id = "submit"  class = "btn" type="submit">登录</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

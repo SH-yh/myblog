@@ -20,6 +20,7 @@ exports.findDocument = function(collectionName, queryJson, queryConfig, callback
         db.collection(collectionName).find(queryJson).limit(queryMount).skip(page).toArray(function(err, doc){
             if(err){
                 throw new Error(err);
+                db.close();
                 return;
             }
             if(callback){
@@ -27,7 +28,6 @@ exports.findDocument = function(collectionName, queryJson, queryConfig, callback
                 db.close();
                 return;
             }
-            db.close();
         });
     });
 };
@@ -36,6 +36,7 @@ exports.findCount = function(collectionName,  queryJson, callback){
     _connecteMongo(function(db){
         db.collection(collectionName).count(queryJson,{}, function(err, sum){
             if(err){
+                db.close();
                 throw new Error(err);
             }
             if(callback){
@@ -43,7 +44,22 @@ exports.findCount = function(collectionName,  queryJson, callback){
                 db.close();
                 return;
             }
-            db.close();
         });
     });
+};
+/*admin登陆验证*/
+exports.checkMessage = function(collectionName, queryJson, callBack){
+    _connecteMongo(function(db){
+        db.collection(collectionName).findOne(queryJson, function(err, result){
+            if(err){
+                throw new Error(err);
+                db.close();
+                return;
+            }
+            if(callBack){
+                callBack(result);
+            }
+            db.close();
+        });
+    })
 };

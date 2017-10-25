@@ -15,7 +15,7 @@ exports.renderArticleList = function(req, res, next){
             var articleType = queryJson.type ? 'type' : 'parentTag';
             model.findCount(defaultDocument, queryJson, function(sum){
                 model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, function(doc) {
-                    res.render('article', {
+                    res.render('front/article', {
                         "content": doc,
                         "classify": classify,
                         "pageSum": Math.ceil(sum / defaultAmount),
@@ -55,7 +55,7 @@ exports.replyPaging = function(req, res, next){
     });
 };
 exports.renderHome = function(req, res, next){
-    res.render('index');
+    res.render('front/index');
     res.end();
 };
 exports.renderDome = function(req, res, next){
@@ -65,7 +65,7 @@ exports.renderDome = function(req, res, next){
         queryJson = {};
     model.findCount(defaultCollection, {}, function(count){
         model.findDocument(defaultCollection, queryJson, {amount: defaultAmount, skip: page}, function(content){
-            res.render('demo', {
+            res.render('front/demo', {
                 "pageSum" : Math.ceil(count / defaultAmount),
                 "typeTag": "parentTag",
                 "type" : "",
@@ -76,6 +76,6 @@ exports.renderDome = function(req, res, next){
     });
 };
 exports.renderBoard = function(req, res, next){
-    res.render('board');
+    res.render('front/board');
     res.end();
 };

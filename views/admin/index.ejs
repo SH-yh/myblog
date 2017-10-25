@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type = "image/ico" href="/images/favicon.ico">
+    <title>后台管理 | HS_HY</title>
+    <link rel="stylesheet" href="/stylesheets/admin/admin.css">
+</head>
+<body>
+    <div class="container">
+        <div class="head">
+            <div class="user_info clearfix">
+                <%var len = info.length%>
+                <% for(var i = 0; i < len; i++){%>
+                    <%var content = info[i]%>
+                    <div class="user_img">
+                        <img src="<%=content.imgsrc%>" alt="博主头像">
+                    </div>
+                    <div class="user_blog">
+                        <a href=<%=content.homesrc%>>个人主页</a>
+                        <a href=<%=content.blogsrc%>><%=content.nickname%>的博客</a>
+                    </div>
+                <%}%>
+            </div>
+        </div>
+        <div class="body">
+            <div class="body-head">
+                <ul class="wrap">
+                    <li class="posts" ><a class="head-active"href="#">文章管理</a></li>
+                    <li class="sort"><a href="#">类别管理</a></li>
+                    <li class="publish"><a href="#">发表文章</a></li>
+                </ul>
+            </div>
+            <div class="body-content">
+                <%var detailLen = details.length%>
+                <ul class="content-wrap">
+                    <%for(var j = 0; j < detailLen; j++){%>
+                    <%var detail = details[j]%>
+                    <li class="list-item">
+                        <a href="">
+                            <span class="item-title"><%=detail.title%></span>
+                            <span class="item-data">( <%=detail.data%> )</span>
+                        </a>
+                    </li>
+                    <%}%>
+                </ul>
+            </di>
+        </div>
+    </div>
+</body>
+</html>

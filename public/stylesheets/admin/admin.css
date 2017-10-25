@@ -1,0 +1,72 @@
+@import url('../reset.css');
+body {
+    background: url("../../images/bg.gif");
+}
+.container {
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px 0;
+    overflow: hidden;
+}
+.user_info{
+    overflow: hidden;
+}
+.user_img {
+    width: 48px;
+    height: 48px;
+}
+.user_img img {
+    width: 100%;
+    height: 100%;
+}
+.user_img, .user_blog{
+    float: left;
+}
+.user_blog {
+    margin-left: 20px;
+}
+.user_blog a {
+    display: block;
+    padding-top:5px;
+}
+.user_blog a:hover {
+    color: #0076A4;
+}
+/*后台管理主体头部设置*/
+.body {
+    padding: 15px 0;
+    margin: 20px 0;
+    background: #fff;
+}
+.wrap li {
+    display: inline-block;
+    padding: 5px 8px;
+    border-right: 1px solid #BEBEBE;
+}
+.wrap li a{
+    padding:6px 8px;
+}
+.wrap li:last-child {
+    border-right-width: 0px;
+}
+.head-active{
+    color:#fff;
+    background: #127CC7;
+}
+.content-wrap {
+    padding: 10px 0;
+}
+.list-item {
+    padding: 16px 0;
+    border-bottom: 1px dashed #efefef;
+}
+.list-item:hover{
+    background: #efefef;
+}
+.list-item a {
+    padding:0 10px;
+    color: #6C6C6C;
+}
+.list-item:last-child {
+    border-bottom: none;
+}
