@@ -12,7 +12,7 @@ requirejs.config({
 });
 requirejs([ 'multifunction'],function(){
     $(function(){
-        var defalutTemplete = "<li class='demo-item'>"+
+        var defaluteTemplate = "<li class='demo-item'>"+
         "<div class='item-head'>"+
         "<a href=<{=content.src}>>"+
         "<img src=<{=content.imgSrc}> alt=<{=content.title}>"+
@@ -25,6 +25,6 @@ requirejs([ 'multifunction'],function(){
         "</li>";
         var defaultUrl = "cases",
             amount = 8;
-        plugs.paging(defalutTemplete, defaultUrl, amount);
+        plugs.paging(defaluteTemplate, defaultUrl, amount);
     })
 });

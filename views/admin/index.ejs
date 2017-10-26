@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="shortcut icon" type = "image/ico" href="/images/favicon.ico">
     <title>后台管理 | HS_HY</title>
-    <link rel="stylesheet" href="/stylesheets/admin/admin.css">
+    <link rel="stylesheet" href="/stylesheets/admin/admin.css" >
 </head>
 <body>
     <div class="container">
@@ -31,24 +31,31 @@
                 <ul class="wrap">
                     <li class="posts" ><a class="head-active"href="#">文章管理</a></li>
                     <li class="sort"><a href="#">类别管理</a></li>
+                    <li class="demoSort"><a href="#">案例管理</a></li>
                     <li class="publish"><a href="#">发表文章</a></li>
                 </ul>
             </div>
             <div class="body-content">
                 <%var detailLen = details.length%>
-                <ul class="content-wrap">
+                <ul class="content-wrap" id="content-container">
                     <%for(var j = 0; j < detailLen; j++){%>
                     <%var detail = details[j]%>
                     <li class="list-item">
-                        <a href="">
+                        <a href="/article/<%=detail.type%>/<%=detail.id%>">
                             <span class="item-title"><%=detail.title%></span>
-                            <span class="item-data">( <%=detail.data%> )</span>
                         </a>
+                        <span class="item-data">(<%=detail.data%>)</span>
+                        <span class="admin-handle">
+                            <span class="edit">编辑</span>
+                            <span id="delete">删除</span>
+                        </span>
                     </li>
                     <%}%>
                 </ul>
-            </di>
+                <%include ../public/paging.ejs%>
+            </div>
         </div>
     </div>
+    <script data-main="/javascripts/admin.js"  src="/javascripts/require.min.js"></script>
 </body>
 </html>

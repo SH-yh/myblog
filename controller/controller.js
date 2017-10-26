@@ -36,7 +36,7 @@ exports.renderArticleContent = function(req, res, next){
     var id = req.params.id,
     defaultDocument = "article";
     model.findDocument(defaultDocument,{"id": id}, {}, function(doc){
-        res.render("articleContent", {
+        res.render("front/articleContent", {
             "content": doc[0]
         });
     });

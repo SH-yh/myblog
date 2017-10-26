@@ -1,4 +1,5 @@
 @import url('../reset.css');
+@import url('../paging.css');
 body {
     background: url("../../images/bg.gif");
 }
@@ -57,8 +58,10 @@ body {
     padding: 10px 0;
 }
 .list-item {
+    position: relative;
     padding: 16px 0;
     border-bottom: 1px dashed #efefef;
+    cursor: pointer;
 }
 .list-item:hover{
     background: #efefef;
@@ -69,4 +72,19 @@ body {
 }
 .list-item:last-child {
     border-bottom: none;
+}
+.item-data {
+    color: #6C6C6C;
+}
+.admin-handle {
+    position: absolute;
+    right: 20px;
+    color: #6C6C6C;
+    cursor: pointer;
+}
+.admin-handle span {
+    padding-right: 10px;
+}
+.admin-handle span:hover, .list-item:hover a{
+    color: #127CC7;
 }

@@ -11,14 +11,21 @@ exports.renderLogin  = function(req, res, next){
 };
 exports.renderIndex = function(req, res, next){
     var defaultCollection_A = 'admin',
-        defaultCollection_B = 'article';
+        defaultCollection_B = 'article',
+        defaultAmount = 12,
+        defaultPage = 0;
     model.findDocument(defaultCollection_A, {}, {}, function(result){
-        model.findDocument(defaultCollection_B, {}, {}, function(doc){
-            res.render('admin/index', {
-                info : result,
-                details: doc
+        model.findDocument(defaultCollection_B, {}, {amount: defaultAmount, page: defaultPage}, function(doc){
+            model.findCount(defaultCollection_B, {}, function(count){
+                res.render('admin/index', {
+                    info : result,
+                    details: doc,
+                    type: "",
+                    typeTag: "parentTag",
+                    pageSum : Math.ceil(count / defaultAmount)
+                });
+                res.end();
             });
-            res.end();
         });
     });
 };
