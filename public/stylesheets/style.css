@@ -46,13 +46,16 @@ canvas {
 }
 /*首页Body*/
 .body {
+    position: absolute;
+    top:0;bottom: 0;
+    margin: auto;
+    height: 300px;
     width:100%;
     color:#fff;
     text-align: center;
 }
 .body-title {
     font-size: 64px;
-    margin-top:180px;
 }
 .body-description {
     font-size: 24px;

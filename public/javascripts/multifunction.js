@@ -60,7 +60,7 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
             var back = $(defaultBaCK),
                 next = $(defaultNext),
                 pageIndex = 0;
-            //默认渲染模板
+            targetItem.val(1);
             back.on('click', trunPage);
             next.on('click', trunPage);
             targetItem.on('change', changeTargetVal);
@@ -167,7 +167,25 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                     }
                 );
             }
-        }
+        },
+        deleteDetail: function(collection, json, callback){
+            var defaulteUrl ;
+            defaulteUrl = "del"+"/"+collection + "/" + json.id;
+            $.ajax({
+                url: defaulteUrl,
+                method: "POST",
+                data: json,
+                success: function(result){
+                    if(callback){
+                        callback(result);
+                    }
+                },
+                error: function(error){
+                    throw new Error(error);
+                }
+            })
+        },
+
     };
     return plugs;
 });

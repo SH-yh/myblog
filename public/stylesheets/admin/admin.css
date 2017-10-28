@@ -1,5 +1,7 @@
 @import url('../reset.css');
 @import url('../paging.css');
+@import url('../footer.css');
+@import url('head.css');
 body {
     background: url("../../images/bg.gif");
 }
@@ -9,30 +11,7 @@ body {
     padding: 20px 0;
     overflow: hidden;
 }
-.user_info{
-    overflow: hidden;
-}
-.user_img {
-    width: 48px;
-    height: 48px;
-}
-.user_img img {
-    width: 100%;
-    height: 100%;
-}
-.user_img, .user_blog{
-    float: left;
-}
-.user_blog {
-    margin-left: 20px;
-}
-.user_blog a {
-    display: block;
-    padding-top:5px;
-}
-.user_blog a:hover {
-    color: #0076A4;
-}
+
 /*后台管理主体头部设置*/
 .body {
     padding: 15px 0;
@@ -60,8 +39,12 @@ body {
 .list-item {
     position: relative;
     padding: 16px 0;
+    font-size: 14px;
     border-bottom: 1px dashed #efefef;
     cursor: pointer;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 .list-item:hover{
     background: #efefef;
@@ -69,6 +52,7 @@ body {
 .list-item a {
     padding:0 10px;
     color: #6C6C6C;
+    font-size: 14px;
 }
 .list-item:last-child {
     border-bottom: none;

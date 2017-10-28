@@ -37,8 +37,7 @@ function check(item, target){
 exports.security = function(target){
     var obj = {};
     for(var item in target){
-        if(target[item].indexOf('<script>') !== -1){
-            delete target[item];
+        if(target[item].indexOf('<script>') != -1){
             continue;
         }
         obj[item] = target[item];

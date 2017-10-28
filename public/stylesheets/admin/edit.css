@@ -1,0 +1,63 @@
+@import url('../reset.css');
+@import url('head.css');
+@import url('quill.snow.css');
+@import url('../footer.css');
+body {
+    background: url("../../images/bg.gif");
+}
+.container {
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.edit-body {
+    width:100%;
+    margin: 20px 0;
+}
+.editor-warp {
+    height: 475px;
+    overflow: auto;
+}
+.edit-title input {
+    border: none;
+    outline: none;
+    background: #F0F0F0;
+    font-size: 16px;
+    padding: 10px 0;
+}
+.title-tip{
+    padding: 15px 0;
+}
+.division {
+    border-bottom: 1px dashed #127CC7;
+}
+.specific-classify {
+    margin-top:15px;
+    margin-left: 36px;
+}
+.specific-classify-item {
+    display: inline-block;
+}
+.abstract-edit {
+    width: 100%;
+    outline: none;
+}
+.button_group {
+    width:100%;
+    text-align: center;
+    margin: 20px 0;
+}
+.btn {
+    display: inline-block;
+    padding: 8px 20px;
+    margin:0 15px;
+    background: #127CC7;
+    color:#fff;
+    cursor: pointer;
+}
+.btn:hover {
+    background:#A00101;
+}
+.ql-toolbar.ql-snow{
+    background: #FFF;
+}

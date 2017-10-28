@@ -1,8 +1,9 @@
 <div class="paging">
     <div class="back" id="back">上一页</div>
     <div data-type="<%=type%>" data-parentTag="<%=typeTag%>" class="page-container" >
+        <%var value = 1%>
         <div class="paging-wrap">
-            <input class="select-page" type="text" value="1" />
+            <input class="select-page" type="text" value=<%=value%> />
             <span class="page-split">/</span>
             <span class="page-sum"><%=pageSum%></span>
         </div>

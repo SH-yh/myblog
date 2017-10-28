@@ -1,0 +1,15 @@
+<div class="head">
+    <div class="user_info clearfix">
+        <%var len = info.length%>
+        <% for(var i = 0; i < len; i++){%>
+        <%var ownerInfo = info[i]%>
+        <div class="user_img">
+            <img src="<%=ownerInfo.imgsrc%>" alt="博主头像">
+        </div>
+        <div class="user_blog">
+            <a href=<%=ownerInfo.homesrc%>>个人主页</a>
+            <a href=<%=ownerInfo.blogsrc%>><%=ownerInfo.nickname%>的博客</a>
+        </div>
+        <%}%>
+    </div>
+</div>

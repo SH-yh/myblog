@@ -1,0 +1,24 @@
+.user_info{
+    overflow: hidden;
+}
+.user_img {
+    width: 48px;
+    height: 48px;
+}
+.user_img img {
+    width: 100%;
+    height: 100%;
+}
+.user_img, .user_blog{
+    float: left;
+}
+.user_blog {
+    margin-left: 20px;
+}
+.user_blog a {
+    display: block;
+    padding-top:5px;
+}
+.user_blog a:hover {
+    color: #0076A4;
+}

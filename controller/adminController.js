@@ -3,12 +3,14 @@
  */
 var model = require('../model/db'),
     assist = require('./assist');
+//登陆界面渲染
 exports.renderLogin  = function(req, res, next){
     res.render('admin/login', {
         error : 0
     });
     res.end();
 };
+//初始界面渲染
 exports.renderIndex = function(req, res, next){
     var defaultCollection_A = 'admin',
         defaultCollection_B = 'article',
@@ -29,6 +31,40 @@ exports.renderIndex = function(req, res, next){
         });
     });
 };
+//文章编辑发表界面渲染
+exports.renderEdit = function(req, res, next){
+    var defaultCollection_A = 'admin',
+        defaultCollection_B = 'article',
+        defaultCollection_C = 'classify',
+        queryJson;
+    queryJson = assist.security({id: req.params.id}) || {};
+    model.findDocument(defaultCollection_A, {}, {}, function(info){
+        model.findDocument(defaultCollection_B, queryJson, {}, function(articleContent){
+            model.findDocument(defaultCollection_C, {}, {}, function(classify){
+                res.render('admin/edit', {
+                    info : info,
+                    articleContent: articleContent[0],
+                    classify: classify,
+                });
+                res.end();
+            });
+        });
+    });
+};
+exports.renderPublish = function(req, res, next){
+    var defaultCollection_A = 'admin',
+        defaultCollection_B = 'classify';
+    model.findDocument(defaultCollection_A, {}, {}, function(info){
+        model.findDocument(defaultCollection_B, {}, {}, function(classify){
+            res.render('admin/publish', {
+                info : info,
+                classify: classify,
+            });
+            res.end();
+        });
+    });
+};
+//登陆验证
 exports.checkLogin = function(req, res, next){
     var securityJson = assist.security(req.body),
         defaultCollection = 'admin',
@@ -43,6 +79,16 @@ exports.checkLogin = function(req, res, next){
                 error : 1
             });
         }
+        res.end();
+    });
+};
+/*从数据库中删除某些数据*/
+exports.deleteSomething = function(req, res, next){
+    var json =assist.security(req.body),
+        collectionName = req.params.type;
+    model.deleteDocument(collectionName, json, function(result){
+        var reply = {ok: result.ok};
+        res.json(reply);
         res.end();
     });
 };

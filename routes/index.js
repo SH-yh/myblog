@@ -28,4 +28,6 @@ router.get('/demo', function(req, res, next){
 router.get('/board', function(req, res, next){
     controller.renderBoard(req, res, next);
 });
+
+
 module.exports = router;

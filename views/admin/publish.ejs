@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico">
+    <title>文章编辑 | HS-HY</title>
+    <link rel="stylesheet" href="/stylesheets/admin/edit.css">
+</head>
+<body>
+<div class="container">
+    <%include ../public/adminHead.ejs%>
+    <div class = "edit-body">
+        <div class="edit-title division">
+            <span>标题 :</span>
+            <input  spellcheck="false" id="article_title" type="text" value=""/>
+        </div>
+        <div class="editor-content">
+            <p class="title-tip">内容 :</p>
+            <div id="editor" class="editor-warp">
+
+            </div>
+        </div>
+    </div>
+    <div class="edit-footer">
+        <div class="article-classify">
+            <p class="title-tip division">父分类 :</p>
+            <ul class="specific-classify">
+                <%var len = classify.length%>
+                <%for(var j = 0;j < len;j++){%>
+                <%var classContent = classify[j]%>
+                <li class="specific-classify-item">
+                    <label for="<%=classContent.mark%>">
+                        <input <%if(j == 0){%>
+                                checked
+                                <%}%>
+                                id=<%=classContent.mark%> type="radio" name="parentClassify" value=<%=classContent.mark%>>
+                        <%=classContent.type%>
+                    </label>
+                </li>
+                <%}%>
+            </ul>
+            <p class="title-tip division">子分类 :</p>
+            <ul class="specific-classify" id="children_classify">
+                <%var childrenClass = classify[0].children%>
+                <%if(childrenClass){%>
+                <%var childrenLen = childrenClass.length%>
+                <%for(var k = 0;k < childrenLen;k++){%>
+                <%childrenContent = childrenClass[k]%>
+                <li class="specific-classify-item">
+                    <label for="<%=childrenContent.mark%>">
+                        <input <%if(k == 0){%>
+                                checked
+                                <%}%>
+                                id=<%=childrenContent.mark%> type="radio" name="childrenClassify" value=<%=childrenContent.mark%>>
+                        <%=childrenContent.type%>
+                    </label>
+                </li>
+                <%}%>
+                <%}else{%>
+                <li class="specific-classify-item">无子类别</li>
+                <%}%>
+            </ul>
+        </div>
+        <div class="article-abstract">
+            <p class="title-tip">摘要 :</p>
+            <textarea  class="abstract-edit" id="txtDesc"  rows="6"></textarea>
+        </div>
+        <div class="button_group">
+            <span class="btn" id="publish">发表</span>
+            <span class="btn" id="save">保存</span>
+            <span class="btn" id="cancel">舍弃</span>
+        </div>
+    </div>
+</div>
+<%include ../public/footer.ejs%>
+</body>
+<script data-main="/javascripts/admin/edit.js" src="/javascripts/require.min.js"></script>
+</html>

@@ -63,3 +63,19 @@ exports.checkMessage = function(collectionName, queryJson, callBack){
         });
     })
 };
+//从数据库中删除某条数据
+exports.deleteDocument = function(collectionName, json, callback){
+    _connecteMongo(function(db){
+        db.collection(collectionName).deleteOne(json, function(err, result){
+            if(err){
+                throw new Error(err);
+                db.close();
+            }else {
+                if(callback){
+                    callback(result.result);
+                    db.close();
+                }
+            }
+        })
+    });
+};

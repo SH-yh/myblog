@@ -11,28 +11,14 @@
 </head>
 <body>
     <div class="container">
-        <div class="head">
-            <div class="user_info clearfix">
-                <%var len = info.length%>
-                <% for(var i = 0; i < len; i++){%>
-                    <%var content = info[i]%>
-                    <div class="user_img">
-                        <img src="<%=content.imgsrc%>" alt="博主头像">
-                    </div>
-                    <div class="user_blog">
-                        <a href=<%=content.homesrc%>>个人主页</a>
-                        <a href=<%=content.blogsrc%>><%=content.nickname%>的博客</a>
-                    </div>
-                <%}%>
-            </div>
-        </div>
+        <%include ../public/adminHead.ejs%>
         <div class="body">
             <div class="body-head">
                 <ul class="wrap">
-                    <li class="posts" ><a class="head-active"href="#">文章管理</a></li>
+                    <li class="posts" ><a class="head-active" href="#">文章管理</a></li>
                     <li class="sort"><a href="#">类别管理</a></li>
                     <li class="demoSort"><a href="#">案例管理</a></li>
-                    <li class="publish"><a href="#">发表文章</a></li>
+                    <li class="publish"><a href="/admin/publish/">发表文章</a></li>
                 </ul>
             </div>
             <div class="body-content">
@@ -40,14 +26,14 @@
                 <ul class="content-wrap" id="content-container">
                     <%for(var j = 0; j < detailLen; j++){%>
                     <%var detail = details[j]%>
-                    <li class="list-item">
+                    <li class="list-item" data-id="<%=detail.id%>">
                         <a href="/article/<%=detail.type%>/<%=detail.id%>">
                             <span class="item-title"><%=detail.title%></span>
                         </a>
                         <span class="item-data">(<%=detail.data%>)</span>
                         <span class="admin-handle">
-                            <span class="edit">编辑</span>
-                            <span id="delete">删除</span>
+                            <a class="edit" href="/admin/edit/<%=detail.id%>">编辑</a>
+                            <span class="delete">删除</span>
                         </span>
                     </li>
                     <%}%>
@@ -56,6 +42,7 @@
             </div>
         </div>
     </div>
-    <script data-main="/javascripts/admin.js"  src="/javascripts/require.min.js"></script>
+    <%include ../public/footer.ejs%>
+    <script data-main="/javascripts/admin/admin.js"  src="/javascripts/require.min.js"></script>
 </body>
 </html>
