@@ -61,3 +61,8 @@ body {
 .ql-toolbar.ql-snow{
     background: #FFF;
 }
+.warn {
+    color: #ff0000;
+    padding-top: 10px;
+    text-align: center;
+}

@@ -33,7 +33,7 @@
                 <%var classContent = classify[j]%>
                 <li class="specific-classify-item">
                     <label for="<%=classContent.mark%>">
-                        <input <%if(j == 0){%>
+                        <input class="parentType" <%if(j == 0){%>
                                 checked
                                 <%}%>
                                 id=<%=classContent.mark%> type="radio" name="parentClassify" value=<%=classContent.mark%>>
@@ -51,7 +51,7 @@
                 <%childrenContent = childrenClass[k]%>
                 <li class="specific-classify-item">
                     <label for="<%=childrenContent.mark%>">
-                        <input <%if(k == 0){%>
+                        <input class="childrenType" <%if(k == 0){%>
                                 checked
                                 <%}%>
                                 id=<%=childrenContent.mark%> type="radio" name="childrenClassify" value=<%=childrenContent.mark%>>

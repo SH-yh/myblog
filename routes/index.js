@@ -20,7 +20,11 @@ router.get('/article/:type/:id', function(req, res, next){
 });
 /*分页功能*/
 router.post('/:typeTag/:type/:page', function(req, res, next){
-    controller.replyPaging(req, res, next)
+    if(req.params.typeTag == "admin"){
+        next();
+    }else{
+        controller.replyPaging(req, res, next);
+    }
 });
 router.get('/demo', function(req, res, next){
     controller.renderDome(req, res, next);

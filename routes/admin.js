@@ -36,5 +36,11 @@ router.get('/publish', function(req, res, next){
 router.post('/del/:type/:id', function(req, res, next){
     controller.deleteSomething(req, res, next);
 });
-
+//编辑文章
+router.post('/update/:type', function(req, res, next){
+    controller.updateArticle(req, res, next);
+});
+router.post('/edit/:type', function(req, res, next){
+    controller.insertArticle(req, res, next);
+});
 module.exports = router;

@@ -15,9 +15,10 @@ exports.renderIndex = function(req, res, next){
     var defaultCollection_A = 'admin',
         defaultCollection_B = 'article',
         defaultAmount = 12,
-        defaultPage = 0;
-    model.findDocument(defaultCollection_A, {}, {}, function(result){
-        model.findDocument(defaultCollection_B, {}, {amount: defaultAmount, page: defaultPage}, function(doc){
+        defaultPage = 0,
+        sort = {"date": -1};
+    model.findDocument(defaultCollection_A, {}, {}, {}, function(result){
+        model.findDocument(defaultCollection_B, {},  {amount: defaultAmount, page: defaultPage}, sort,function(doc){
             model.findCount(defaultCollection_B, {}, function(count){
                 res.render('admin/index', {
                     info : result,
@@ -38,9 +39,9 @@ exports.renderEdit = function(req, res, next){
         defaultCollection_C = 'classify',
         queryJson;
     queryJson = assist.security({id: req.params.id}) || {};
-    model.findDocument(defaultCollection_A, {}, {}, function(info){
-        model.findDocument(defaultCollection_B, queryJson, {}, function(articleContent){
-            model.findDocument(defaultCollection_C, {}, {}, function(classify){
+    model.findDocument(defaultCollection_A, {}, {}, {}, function(info){
+        model.findDocument(defaultCollection_B, queryJson, {}, {}, function(articleContent){
+            model.findDocument(defaultCollection_C, {}, {}, {}, function(classify){
                 res.render('admin/edit', {
                     info : info,
                     articleContent: articleContent[0],
@@ -54,8 +55,8 @@ exports.renderEdit = function(req, res, next){
 exports.renderPublish = function(req, res, next){
     var defaultCollection_A = 'admin',
         defaultCollection_B = 'classify';
-    model.findDocument(defaultCollection_A, {}, {}, function(info){
-        model.findDocument(defaultCollection_B, {}, {}, function(classify){
+    model.findDocument(defaultCollection_A, {}, {}, {}, function(info){
+        model.findDocument(defaultCollection_B, {}, {}, {}, function(classify){
             res.render('admin/publish', {
                 info : info,
                 classify: classify,
@@ -90,5 +91,25 @@ exports.deleteSomething = function(req, res, next){
         var reply = {ok: result.ok};
         res.json(reply);
         res.end();
+    });
+};
+//更新
+exports.updateArticle = function(req, res, next){
+    var defaultCollection = req.params.type,
+        updateStr = assist.security(req.body),
+        whereStr = {"id": updateStr.id};
+    model.updateDocument(defaultCollection,whereStr,updateStr, function(result){
+        res.json({ok:result.ok});
+    })
+};
+exports.insertArticle = function(req, res, next){
+    var defaultCollection = req.params.type,
+        insertStr = assist.security(req.body);
+    model.findCount(defaultCollection, {}, function(count){
+        insertStr.id = assist.setId(count + 1);
+        console.log(insertStr);
+        model.insertDocument(defaultCollection, insertStr, function(result){
+            res.json({ok:result.ok});
+        });
     });
 };

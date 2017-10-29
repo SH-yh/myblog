@@ -13,11 +13,12 @@ function _connecteMongo(callback){
         }
     });
 }
-exports.findDocument = function(collectionName, queryJson, queryConfig, callback){
+exports.findDocument = function(collectionName, queryJson, queryConfig, sort, callback){
     var queryMount = queryConfig.amount || 0,
-        page = queryConfig.skip * queryMount || 0;
+        page = queryConfig.skip * queryMount || 0,
+        sort = sort || {};
     _connecteMongo(function(db){
-        db.collection(collectionName).find(queryJson).limit(queryMount).skip(page).toArray(function(err, doc){
+        db.collection(collectionName).find(queryJson).limit(queryMount).skip(page).sort(sort).toArray(function(err, doc){
             if(err){
                 throw new Error(err);
                 db.close();
@@ -78,4 +79,37 @@ exports.deleteDocument = function(collectionName, json, callback){
             }
         })
     });
+};
+//更新
+exports.updateDocument = function(collectionName, whereStr, setJson, callback){
+    var updateStr = {$set: setJson};
+    _connecteMongo(function(db){
+        db.collection(collectionName).update(whereStr, updateStr, function(err, result){
+            if(err){
+                throw new Error(err);
+                db.close();
+            }else {
+                if(callback){
+                    callback(result.result);
+                    db.close();
+                }
+            }
+        })
+    })
+};
+//插入
+exports.insertDocument = function(collectionName, insertStr, callback){
+    _connecteMongo(function(db){
+        db.collection(collectionName).insertOne(insertStr, function(err, result){
+            if(err){
+                throw new Error(err);
+                db.close();
+            }else {
+                if(callback){
+                    callback(result.result);
+                    db.close();
+                }
+            }
+        })
+    })
 };

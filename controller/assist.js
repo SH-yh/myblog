@@ -44,3 +44,15 @@ exports.security = function(target){
     }
     return obj;
 };
+
+exports.setId = function(count){
+    var str = count.toString(),
+        len = str.length,
+        id="";
+    if(len < 3 && len > 0){
+        for(var i = 0; i < len;i++){
+            id = "0" + str;
+        }
+    }
+    return id;
+};

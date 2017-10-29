@@ -33,7 +33,7 @@
                     <%var classContent = classify[j]%>
                     <li class="specific-classify-item">
                         <label for="<%=classContent.mark%>">
-                            <input <%if(classContent.mark == articleContent.parentTag){%>
+                            <input class="parentType" <%if(classContent.mark == articleContent.parentTag){%>
                                     <%var childrenClass = classContent.children%>
                                     checked
                                     <%}%>
@@ -51,7 +51,7 @@
                             <%childrenContent = childrenClass[k]%>
                             <li class="specific-classify-item">
                                 <label for="<%=childrenContent.mark%>">
-                                    <input <%if(childrenContent.type == articleContent.type){%>
+                                    <input class="childrenType" <%if(childrenContent.type == articleContent.type){%>
                                             checked
                                             <%}%>
                                             id=<%=childrenContent.mark%> type="radio" name="childrenClassify" value=<%=childrenContent.mark%>>
@@ -68,6 +68,7 @@
                 <p class="title-tip">摘要 :</p>
                 <textarea  class="abstract-edit" id="txtDesc"  rows="6"><%if(articleContent.abstract){%><%=articleContent.abstract.trim()%><%}%></textarea>
             </div>
+            <p id="warn" class="warn"></p>
             <div class="button_group">
                 <span class="btn" id="publish">发表</span>
                 <span class="btn" id="save">保存</span>

@@ -16,7 +16,7 @@ requirejs(['multifunction'], function(){
                 '<a href="/article/<{=content.type}>/<{=content.id}>">'+
                 '<span class="item-title"><{=content.title}></span>'+
                 '</a>'+
-                '<span class="item-data">(<{=content.data}>)</span>'+
+                '<span class="item-data">(<{=content.date}>)</span>'+
                 '<span class="admin-handle">'+
                 '<a class="edit" href="/admin/edit/<{=content.id}>">编辑</a>'+
                 '<span id="delete">删除</span>'+

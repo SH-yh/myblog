@@ -8,13 +8,14 @@ exports.renderArticleList = function(req, res, next){
     var defaultAmount = 6,
         defaultDocument = "article",
         page = req.query.page || 0,
-        type =  req.params.type || "";
-    model.findDocument('classify', {}, {}, function(classify){
+        type =  req.params.type || "",
+        sort = {"date": -1};
+    model.findDocument('classify', {}, {}, {}, function(classify){
         var queryJson = assit.getType(type, classify);
         if(queryJson){
             var articleType = queryJson.type ? 'type' : 'parentTag';
             model.findCount(defaultDocument, queryJson, function(sum){
-                model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, function(doc) {
+                model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, sort, function(doc) {
                     res.render('front/article', {
                         "content": doc,
                         "classify": classify,
@@ -35,7 +36,7 @@ exports.renderArticleList = function(req, res, next){
 exports.renderArticleContent = function(req, res, next){
     var id = req.params.id,
     defaultDocument = "article";
-    model.findDocument(defaultDocument,{"id": id}, {}, function(doc){
+    model.findDocument(defaultDocument,{"id": id}, {}, {}, function(doc){
         res.render("front/articleContent", {
             "content": doc[0]
         });
@@ -46,11 +47,12 @@ exports.replyPaging = function(req, res, next){
     var defaultDocument = req.params.typeTag || "article";
     var queryBody = req.body,
         page = parseInt(queryBody.page),
-        defaultAmount = parseInt(queryBody.amount);
+        defaultAmount = parseInt(queryBody.amount),
+        sort = {"date": -1};
     delete queryBody.page;
     delete queryBody.amount;
     var queryJson = queryBody.parentTag == "all" ? {} : queryBody;
-    model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, function(content){
+    model.findDocument(defaultDocument, queryJson, {amount: defaultAmount, skip: page}, sort, function(content){
         res.json({doc: content});
     });
 };
@@ -64,7 +66,7 @@ exports.renderDome = function(req, res, next){
         page = req.query.page || 0,
         queryJson = {};
     model.findCount(defaultCollection, {}, function(count){
-        model.findDocument(defaultCollection, queryJson, {amount: defaultAmount, skip: page}, function(content){
+        model.findDocument(defaultCollection, queryJson, {amount: defaultAmount, skip: page}, {},function(content){
             res.render('front/demo', {
                 "pageSum" : Math.ceil(count / defaultAmount),
                 "typeTag": "parentTag",

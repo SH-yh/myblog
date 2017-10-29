@@ -25,7 +25,7 @@ requirejs(['https://code.jquery.com/jquery-1.9.1.min.js', 'multifunction'],funct
                    '<span class="article-author">作者：</span>'+
                    '<span class="author-name"><{=content.author}></span>'+
                    '</p>'+
-                   '<p class="article-date"><{=content.data}></p>'+
+                   '<p class="article-date"><{=content.date}></p>'+
                    '</div>'+
                    '</div>'+
                    '<div class="article-body">'+
