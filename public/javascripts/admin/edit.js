@@ -4,10 +4,13 @@ requirejs.config({
     shim: {
         'quill' :{
             exports: 'Qui'
+        },
+        'underscore': {
+            exports: "_"
         }
     }
 });
-requirejs(["quill", "https://code.jquery.com/jquery-1.9.1.min.js"], function(Quill){
+requirejs(["quill","underscore","https://code.jquery.com/jquery-1.9.1.min.js"], function(Quill){
     (function(){
         var app = {
             richEdit: function(){
@@ -37,10 +40,12 @@ requirejs(["quill", "https://code.jquery.com/jquery-1.9.1.min.js"], function(Qui
                 cancelBtn.on('click', app.cancelPublish);
             },
             cancelPublish: function(){
-
+                window.localStorage.removeItem('doc');
+                window.location.href = "/admin/";
             },
             save: function(){
-
+                var json = app.getJson();
+                window.localStorage.setItem('doc', JSON.stringify(json));
             },
             getJson: function(){
                 var articleContainer = $('#article_title'),
@@ -114,9 +119,52 @@ requirejs(["quill", "https://code.jquery.com/jquery-1.9.1.min.js"], function(Qui
                 var url = app.setUrl(json.id);
                 app.fetch(url, json)
             },
+            toggleRadio: function(){
+                $('.parentType').on('focus', app.toggle);
+            },
+            toggle: function(){
+                var defaulteTemplate = '<li class="specific-classify-item">'+
+                    '<label for="<{=childrenContent.mark}>">'+
+                    '<input class="childrenType"'+
+                    'id=<{=childrenContent.mark}> type="radio" name="childrenClassify" value=<{=childrenContent.mark}>>'+
+                    '<{=childrenContent.type}>'+
+                    '</label>'+
+                    '</li>';
+                var queryUrl = '/admin/query/classify',
+                    type = $(this).val(),
+                    json = {"mark": type};
+                $.ajax({
+                    url: queryUrl,
+                    method: 'POST',
+                    data:json,
+                    success: function(result){
+                        var container = $('#children_classify'),
+                            childrenType = result.children;
+                        if(childrenType){
+                            var len = childrenType.length,
+                                compiled = _.template(defaulteTemplate);
+                            container.html("");
+                            for(var i = 0; i < len; i++){
+                                var type = childrenType[i];
+                                var html = compiled({
+                                    childrenContent: type
+                                });
+                                container.append(html);
+                            }
+                        }else{
+                            container.html('无子类别');
+                        }
+
+                    },
+                    error: function(err){
+                        throw new Error(err);
+                    }
+                });
+            },
             start : function(){
                 this.richEdit();
                 this.editPublish();
+                this.toggleRadio();
             }
         };
         app.start();

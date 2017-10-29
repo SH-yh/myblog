@@ -110,6 +110,15 @@ exports.insertArticle = function(req, res, next){
         console.log(insertStr);
         model.insertDocument(defaultCollection, insertStr, function(result){
             res.json({ok:result.ok});
+            res.end();
         });
     });
+};
+exports.querySomething = function(req, res, next){
+    var defaultCollection = req.params.type,
+        queryJson = assist.security(req.body);
+    model.findDocument(defaultCollection,queryJson,{},{},function(result){
+        res.json(result[0]);
+        res.end();
+    })
 };

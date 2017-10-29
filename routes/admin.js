@@ -40,7 +40,12 @@ router.post('/del/:type/:id', function(req, res, next){
 router.post('/update/:type', function(req, res, next){
     controller.updateArticle(req, res, next);
 });
+//发表文章
 router.post('/edit/:type', function(req, res, next){
     controller.insertArticle(req, res, next);
+});
+//分页显示
+router.post('/query/:type', function(req, res, next){
+    controller.querySomething(req, res, next);
 });
 module.exports = router;
