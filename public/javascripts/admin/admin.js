@@ -19,12 +19,14 @@ requirejs(['multifunction'], function(){
                 '<span class="item-data">(<{=content.date}>)</span>'+
                 '<span class="admin-handle">'+
                 '<a class="edit" href="/admin/edit/<{=content.id}>">编辑</a>'+
-                '<span id="delete">删除</span>'+
+                '<span class="delete">删除</span>'+
                 '</span>'+
                 '</li>';
             var defaultCollection = "article",
                 amount = 12;
-            plugs.paging(defaluteTemplate, defaultCollection, amount);
+            plugs.paging(defaluteTemplate, defaultCollection, amount, function(){
+                app.deleteDetail();
+            });
         },
         deleteDetail: function(){
             var delBtn,
@@ -34,6 +36,7 @@ requirejs(['multifunction'], function(){
             defaulateCollection = 'article';
             delBtn.on('click', callback);
             function callback(){
+
                 var listItem = $(this).parent().parent();
                 var id = listItem.attr('data-id');
                 json = {
@@ -44,6 +47,7 @@ requirejs(['multifunction'], function(){
                         window.location.reload();
                     }
                 })
+
             }
         }
     };

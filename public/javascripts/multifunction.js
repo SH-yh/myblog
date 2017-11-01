@@ -46,7 +46,7 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                 $(window).scrollTop(0);
             });
         },
-        paging: function(defalutTemplete, url, amount){
+        paging: function(defalutTemplete, url, amount, callback){
             var defaultBaCK = '#back',
                 defaultNext = "#next",
                 targetItem = $('.select-page'),
@@ -159,6 +159,9 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                                     content: doc[i]
                                 });
                                 container.append(html);
+                            }
+                            if(callback){
+                                callback();
                             }
                         },
                         error: function(err){
