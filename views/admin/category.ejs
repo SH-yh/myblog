@@ -24,6 +24,7 @@
                             <div class="type">
                                 <div class="typeWarp">
                                     <span data-relation = "parent" class="type-item" data-mark="<%=classifyContent.mark%>"><%=classifyContent.type%></span>
+                                    <span class = "deleteBnt" >X</span>
                                 </div>
                             </div>
                         </div>
@@ -36,8 +37,11 @@
                                         <%var len = classifyChildren.length%>
                                         <%for(var j =0;j<len;j++){%>
                                         <%var children = classifyChildren[j]%>
-                                        <span data-relation = "children" class="type-item" data-mark="<%=children.mark%>"><%=children.type%></span>
-                                        <%}%>
+                                        <div class="type-container">
+                                            <span data-relation = "children" class="type-item" data-mark="<%=children.mark%>"><%=children.type%></span>
+                                            <span class = "deleteBnt" >X</span>
+                                        </div>
+                                    <%}%>
                                     <%}else{%>
                                     <%}%>
                                 </div>
@@ -53,11 +57,19 @@
             </ul>
         </div>
         <div class="operation-add">
-            <div>
-                <span>添加分类:</span>
-                <input type="text" class="newType" name="type">
-                <span class="btn" id="newAdd">添加</span>
+            <div class="operation-container">
+                <h1 class="new-item">新增分类</h1>
+                <div class="new-item">
+                    <span>添加分类:</span>
+                    <input type="text" class="newType" name="type">
+                </div>
+                <div class="new-item">
+                    <span>添加代号:</span>
+                    <input type="text" class="newType" name="mark">
+                </div>
+                <div class="warn">请填写完整!</div>
             </div>
+            <div class="btn" id="newAdd">添加</div>
         </div>
     </div>
     <script data-main="/javascripts/admin/category.js" src="/javascripts/require.min.js"></script>

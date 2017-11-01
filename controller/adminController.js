@@ -70,7 +70,6 @@ exports.renderCategory = function(req, res, next){
         defaultCollection_B = 'admin';
     model.findDocument(defaultCollection_A, {}, {}, {}, function(classify){
         model.findDocument(defaultCollection_B, {}, {}, {}, function(info){
-            console.log(classify);
             res.render('admin/category', {
                 info:info,
                 classify: classify
@@ -124,6 +123,14 @@ exports.insertArticle = function(req, res, next){
             res.json({ok:result.ok});
             res.end();
         });
+    });
+};
+exports.insertClassify = function(req, res, next){
+    var defaultCollection = req.params.type,
+        insertStr = assist.security(req.body);
+    model.insertDocument(defaultCollection, insertStr, function(result){
+        res.json({ok:result.ok});
+        res.end();
     });
 };
 exports.querySomething = function(req, res, next){

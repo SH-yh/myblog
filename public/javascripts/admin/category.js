@@ -4,11 +4,11 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
             mark : true,
             handle: function(){
                 var editBtn = $('.edit'),
-                    deleteBtn = $('.delete'),
-                    addBtn = $('.add');
+                    addBtn = $('.add'),
+                    newAddBtn = $('#newAdd');
                 editBtn.on('click', this.handleEdit);
-                deleteBtn.on('click', this.handleDelete);
-                addBtn.on('click', this.handleAdd)
+                addBtn.on('click', this.handleAdd);
+                newAddBtn.on('click', this.handleNewType);
             },
             handleCommon: function(item){
                 var self = $(item);
@@ -42,6 +42,7 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                     activeContent = "保存",
                     typeItem = self.parent().siblings().find('.type-item');
                 if(app.mark){
+                    app.handleDelete(this);
                     self.addClass(defaultActive).html(activeContent);
                     typeItem.attr('contenteditable', true);
                 }else{
@@ -50,12 +51,48 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                     self.removeClass(defaultActive).html(defaultContent);
                     typeItem.attr('contenteditable', false);
                     self.off('click');
-                    app.fetch(url, json, self, app.handleEdit);
+                    app.fetch(url, json, function(){
+                        self.on('click', app.handleEdit);
+                    });
                 }
                 app.mark = !app.mark;
             },
-            handleDelete: function(){
-               // app.handleCommon(this);
+            handleDelete: function(that){
+                var typeItem = $('.type-item');
+                typeItem.on('click', handle);
+                function handle(){
+                    var self = $(this);
+                    var deleteBtn = self.next();
+                    deleteBtn.fadeIn(500);
+                    deleteBtn.on('click', judge(self));
+                }
+                function judge(item){
+                    var type = item.attr("data-relation"),
+                        mark = item.attr("data-mark"),
+                        parent,
+                        parents,
+                        index,
+                        url,
+                        data;
+                    return function(){
+                        if(type == "parent"){
+                            parent = item.parents('li');
+                            parents = parent.parent();
+                            index = parent.index();
+                            url = "/admin/del/classify";
+                            data = {
+                                "mark":mark
+                            };
+                            parents.children(parent).eq(index).remove();
+                            app.fetch(url, data);
+                        }else if(type == "children"){
+                            parents = item.parents('div.typeWarp');
+                            parent = item.parent();
+                            index = parent.index();
+                            parents.children(parent).eq(index).remove();
+                        }
+                    }
+                }
             },
             handleAdd: function(){
                 var self = $(this);
@@ -66,8 +103,11 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                 if(app.mark){
                     self.addClass(defaultActive).html(activeContent);
                     var typeWrap = self.parent().prev().find('.typeWarp');
-                    var html = '<span data-relation = "children" id="newTypeItem" contenteditable = "true" class="type-item"  data-mark="">类型</span>'+
-                        '<span data-relation = "children" contenteditable = "true"  class="type-item" id="mark"  data-mark="">代号</span>';
+                    var html = '<div class="type-container">'+
+                        '<span data-relation = "children" id="newTypeItem" contenteditable = "true" class="type-item"  data-mark="">类型</span>'+
+                        '<span data-relation = "children" contenteditable = "true"  class="type-item" id="mark"  data-mark="">代号</span>'+
+                    '</div>';
+
                     typeWrap.append(html);
                 }else{
                     var url = '/admin/category/update',
@@ -78,21 +118,52 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                     typeItem.remove("#mark");
                     json = app.handleCommon(this);
                     self.off('click');
-                    app.fetch(url, json, self, app.handleAdd);
+                    app.fetch(url, json, function(){
+                        self.on('click', app.handleAdd);
+                    });
                 }
                 app.mark = !app.mark;
             },
-            fetch: function(url, data, item, handle){
+            handleNewType: function(){
+                var newType = $('.newType'),
+                    mark = true,
+                    url = '/admin/new/classify';
+                var data = {
+                    "type": "",
+                    "mark": "",
+                    "children": []
+                };
+                newType.each(function(){
+                    if($(this).val() == ""){
+                        mark = false;
+                    }
+                });
+                if(mark){
+                    $('.warn').fadeOut();
+                    data.type = $('.newType[name=type]').val();
+                    data.mark = $('.newType[name=mark]').val();
+                    app.fetch(url, data, function(){
+                        window.location.reload();
+                    });
+                }else{
+                    $('.warn').fadeIn();
+                }
+            },
+            fetch: function(url, data, callback){
                 $.ajax({
                     url: url,
                     method: "POST",
                     contentType: "application/json; charset=utf-8",
                     data: JSON.stringify(data),
-                    success: function(){
-                        item.on('click', handle);
+                    success: function(result){
+                        if(callback && result.ok){
+                            callback();
+                        }
                     },
                     error: function(){
-                        item.on('click', handle);
+                        if(callback){
+                            callback();
+                        }
                     }
                 });
             },

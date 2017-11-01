@@ -170,7 +170,7 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
         },
         deleteDetail: function(collection, json, callback){
             var defaulteUrl ;
-            defaulteUrl = "del"+"/"+collection + "/" + json.id;
+            defaulteUrl = "del"+"/"+collection;
             $.ajax({
                 url: defaulteUrl,
                 method: "POST",

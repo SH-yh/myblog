@@ -36,7 +36,7 @@ router.get('/category', function(req, res, next){
     controller.renderCategory(req, res, next);
 });
 //文章删除
-router.post('/del/:type/:id', function(req, res, next){
+router.post('/del/:type', function(req, res, next){
     controller.deleteSomething(req, res, next);
 });
 //编辑文章
@@ -46,6 +46,9 @@ router.post('/update/:type', function(req, res, next){
 //发表文章
 router.post('/edit/:type', function(req, res, next){
     controller.insertArticle(req, res, next);
+});
+router.post('/new/:type', function(req, res, next){
+    controller.insertClassify(req, res, next);
 });
 //更新文章列表
 router.post('/category/update', function(req, res, next){

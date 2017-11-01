@@ -19,23 +19,20 @@
     position: relative;
     padding-bottom:10px;
     border-top: 2px solid #333;
-    background:#F0F0F0;
 }
 .type {
     width:100%;
     overflow: hidden;
 }
-.classify-parent {
+.classify-parent,.classify-children {
     padding:5px 0;
 }
-.classify-children {
-    padding:5px 0;
-}
-.type-item {
+.type-item ,.deleteBnt{
     display: inline-block;
     padding:5px 8px;
     margin:4px 2px;
     border-bottom:1px solid transparent;
+    cursor: pointer;
 }
 .type-item[contenteditable="true"] {
     border-bottom:1px solid #127CC7;
@@ -67,7 +64,25 @@
     border: none;
     outline: none;
     border-bottom: 1px solid #333;
+    background:#f0f0f0;
 }
 .enable {
     background: #A00101;
+}
+.type-container {
+    display: inline-block;
+}
+.deleteBnt,.warn{
+    display: none;
+    color:#A00101;
+}
+.warn {
+    margin-bottom:10px;
+}
+.operation-add{
+    background:#f0f0f0;
+    padding:10px 0;
+}
+.new-item {
+    margin-bottom:15px;
 }
