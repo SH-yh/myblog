@@ -32,6 +32,9 @@ router.get('/edit/:id', function(req, res, next){
 router.get('/publish', function(req, res, next){
     controller.renderPublish(req, res, next);
 });
+router.get('/category', function(req, res, next){
+    controller.renderCategory(req, res, next);
+});
 //文章删除
 router.post('/del/:type/:id', function(req, res, next){
     controller.deleteSomething(req, res, next);
@@ -43,6 +46,10 @@ router.post('/update/:type', function(req, res, next){
 //发表文章
 router.post('/edit/:type', function(req, res, next){
     controller.insertArticle(req, res, next);
+});
+//更新文章列表
+router.post('/category/update', function(req, res, next){
+    controller.updateCategory(req, res, next);
 });
 //分页显示
 router.post('/query/:type', function(req, res, next){

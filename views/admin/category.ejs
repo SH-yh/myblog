@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/ico" href="/images/favicon.png">
+    <title>类别管理</title>
+    <link rel="stylesheet" href="/stylesheets/admin/category.css">
+</head>
+<body>
+    <div class="container">
+        <%include ../public/adminHead.ejs%>
+        <div class="category-warp">
+            <h1 class="tip">所有标签</h1>
+            <ul class="category-container">
+                <%var classifyLen = classify.length%>
+                <%for(var i = 0;i < classifyLen;i++){%>
+                    <%var classifyContent = classify[i]%>
+                    <li class="classify-item">
+                        <div class="classify-parent">
+                            <span>父标题:</span>
+                            <div class="type">
+                                <div class="typeWarp">
+                                    <span data-relation = "parent" class="type-item" data-mark="<%=classifyContent.mark%>"><%=classifyContent.type%></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="classify-children">
+                            <span>子标题 :</span>
+                            <%var classifyChildren = classifyContent.children%>
+                            <div class="type">
+                                <div class="typeWarp">
+                                    <%if(classifyChildren){%>
+                                        <%var len = classifyChildren.length%>
+                                        <%for(var j =0;j<len;j++){%>
+                                        <%var children = classifyChildren[j]%>
+                                        <span data-relation = "children" class="type-item" data-mark="<%=children.mark%>"><%=children.type%></span>
+                                        <%}%>
+                                    <%}else{%>
+                                    <%}%>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="operation">
+                            <span class="btn edit">编辑</span>
+                            <span class="btn delete">删除</span>
+                            <span class="btn add">添加</span>
+                        </div>
+                    </li>
+                <%}%>
+            </ul>
+        </div>
+        <div class="operation-add">
+            <div>
+                <span>添加分类:</span>
+                <input type="text" class="newType" name="type">
+                <span class="btn" id="newAdd">添加</span>
+            </div>
+        </div>
+    </div>
+    <script data-main="/javascripts/admin/category.js" src="/javascripts/require.min.js"></script>
+</body>
+</html>

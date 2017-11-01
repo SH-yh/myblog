@@ -65,6 +65,19 @@ exports.renderPublish = function(req, res, next){
         });
     });
 };
+exports.renderCategory = function(req, res, next){
+    var defaultCollection_A = 'classify',
+        defaultCollection_B = 'admin';
+    model.findDocument(defaultCollection_A, {}, {}, {}, function(classify){
+        model.findDocument(defaultCollection_B, {}, {}, {}, function(info){
+            console.log(classify);
+            res.render('admin/category', {
+                info:info,
+                classify: classify
+            });
+        });
+    });
+};
 //登陆验证
 exports.checkLogin = function(req, res, next){
     var securityJson = assist.security(req.body),
@@ -107,7 +120,6 @@ exports.insertArticle = function(req, res, next){
         insertStr = assist.security(req.body);
     model.findCount(defaultCollection, {}, function(count){
         insertStr.id = assist.setId(count + 1);
-        console.log(insertStr);
         model.insertDocument(defaultCollection, insertStr, function(result){
             res.json({ok:result.ok});
             res.end();
@@ -120,5 +132,14 @@ exports.querySomething = function(req, res, next){
     model.findDocument(defaultCollection,queryJson,{},{},function(result){
         res.json(result[0]);
         res.end();
+    })
+};
+//更新文章列表
+exports.updateCategory = function(req, res, next){
+    var defaultCollection = "classify",
+        updateStr = assist.security(req.body),
+        whereStr = {"mark": updateStr.mark};
+    model.updateDocument(defaultCollection,whereStr,updateStr, function(result){
+        res.json({ok:result.ok});
     })
 };

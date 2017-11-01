@@ -1,0 +1,73 @@
+@import url('../reset.css');
+@import url('head.css');
+.container {
+    width: 960px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.tip {
+    padding:15px 0;
+    text-align: center;
+}
+.category-warp {
+    width:100%;
+    margin-top:20px;
+    border-top: 1px dashed #127CC7;
+    word-break: break-all;
+}
+.classify-item{
+    position: relative;
+    padding-bottom:10px;
+    border-top: 2px solid #333;
+    background:#F0F0F0;
+}
+.type {
+    width:100%;
+    overflow: hidden;
+}
+.classify-parent {
+    padding:5px 0;
+}
+.classify-children {
+    padding:5px 0;
+}
+.type-item {
+    display: inline-block;
+    padding:5px 8px;
+    margin:4px 2px;
+    border-bottom:1px solid transparent;
+}
+.type-item[contenteditable="true"] {
+    border-bottom:1px solid #127CC7;
+    background:#fff;
+}
+.typeWarp{
+    word-break: break-all;
+    padding-left: 32px;
+}
+.operation {
+    text-align: right;
+    margin-right: 20px;
+}
+.btn{
+    display: inline-block;
+    padding:6px 10px;
+    color:#fff;
+    font-size: 14px;
+    background:#127CC7;
+    cursor: pointer;
+}
+.operation-add{
+    width:100%;
+    text-align: center;
+    margin:20px 0;
+}
+.newType {
+    font-size: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #333;
+}
+.enable {
+    background: #A00101;
+}
