@@ -1,7 +1,8 @@
 requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
     $(function(){
         var app = {
-            mark : true,
+            mark: true,
+            childrenMark: "",
             handle: function(){
                 var editBtn = $('.edit'),
                     addBtn = $('.add'),
@@ -16,7 +17,8 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                 var json = {
                     "type": "",
                     "mark": "",
-                    "children": []
+                    "children": [],
+                    "childrenMark" : app.childrenMark
                 };
                 item.each(function(){
                     var self = $(this);
@@ -40,22 +42,29 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                     defaultActive = 'enable',
                     defaultContent = "编辑",
                     activeContent = "保存",
-                    typeItem = self.parent().siblings().find('.type-item');
+                    typeItem = self.parent().siblings().find('.type-item'),
+                    editBtn = $('.edit'),
+                    addBtn = $('.add');
+                addBtn.off('click');
+                editBtn.off('click');
+                self.on('click', app.handleEdit);
                 if(app.mark){
                     app.handleDelete(this);
                     self.addClass(defaultActive).html(activeContent);
                     typeItem.attr('contenteditable', true);
+                    app.mark = false;
                 }else{
-                    var url = '/admin/category/update',
+                    var url = '/admin/category/article/del',
                         json = app.handleCommon(this);
                     self.removeClass(defaultActive).html(defaultContent);
                     typeItem.attr('contenteditable', false);
                     self.off('click');
                     app.fetch(url, json, function(){
-                        self.on('click', app.handleEdit);
+                        addBtn.on('click', app.handleAdd);
+                        editBtn.on('click', app.handleEdit);
+                        app.mark = true;
                     });
                 }
-                app.mark = !app.mark;
             },
             handleDelete: function(that){
                 var typeItem = $('.type-item');
@@ -63,7 +72,7 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                 function handle(){
                     var self = $(this);
                     var deleteBtn = self.next();
-                    deleteBtn.fadeIn(500);
+                    deleteBtn.fadeIn();
                     deleteBtn.on('click', judge(self));
                 }
                 function judge(item){
@@ -73,19 +82,20 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                         parents,
                         index,
                         url,
-                        data;
+                        json = null;
                     return function(){
                         if(type == "parent"){
                             parent = item.parents('li');
                             parents = parent.parent();
                             index = parent.index();
                             url = "/admin/del/classify";
-                            data = {
-                                "mark":mark
-                            };
+                            url = url,
+                            json = {"mark":mark};
                             parents.children(parent).eq(index).remove();
-                            app.fetch(url, data);
+                            app.fetch(url, json);
+                            return;
                         }else if(type == "children"){
+                            app.childrenMark = mark;
                             parents = item.parents('div.typeWarp');
                             parent = item.parent();
                             index = parent.index();
@@ -99,18 +109,24 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                 var defaultActive = 'enable',
                     defaultContent = "添加",
                     activeContent = "保存",
-                    typeItem = self.parent().siblings().find('.type-item');
+                    typeItem = self.parent().siblings().find('.type-item'),
+                    addBtn = $('.add'),
+                    editBtn = $('.edit');
+                editBtn.off('click');
+                addBtn.off('click');
+                self.on('click', app.handleAdd);
                 if(app.mark){
                     self.addClass(defaultActive).html(activeContent);
                     var typeWrap = self.parent().prev().find('.typeWarp');
-                    var html = '<div class="type-container">'+
-                        '<span data-relation = "children" id="newTypeItem" contenteditable = "true" class="type-item"  data-mark="">类型</span>'+
-                        '<span data-relation = "children" contenteditable = "true"  class="type-item" id="mark"  data-mark="">代号</span>'+
-                    '</div>';
+                    var html =
+                        '<div class="type-container">'+
+                            '<span data-relation = "children" id="newTypeItem" contenteditable = "true" class="type-item"  data-mark="">类型</span>'+
+                            '<span data-relation = "children" contenteditable = "true"  class="type-item" id="mark"  data-mark="">代号</span>'+
+                        '</div>';
 
                     typeWrap.append(html);
                 }else{
-                    var url = '/admin/category/update',
+                    var url = '/admin/category/article/update',
                         json;
                     self.removeClass(defaultActive).html(defaultContent);
                     typeItem.attr('contenteditable', false);
@@ -119,7 +135,9 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
                     json = app.handleCommon(this);
                     self.off('click');
                     app.fetch(url, json, function(){
-                        self.on('click', app.handleAdd);
+                        addBtn.on('click', app.handleAdd);
+                        editBtn.on('click', app.handleEdit);
+                        window.location.reload();
                     });
                 }
                 app.mark = !app.mark;

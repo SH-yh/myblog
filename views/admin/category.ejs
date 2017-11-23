@@ -28,21 +28,20 @@
                                 </div>
                             </div>
                         </div>
+                        <%var classifyChildren = classifyContent.children%>
                         <div class="classify-children">
                             <span>子标题 :</span>
-                            <%var classifyChildren = classifyContent.children%>
                             <div class="type">
                                 <div class="typeWarp">
-                                    <%if(classifyChildren){%>
+                                    <%if(classifyChildren != ""){%>
                                         <%var len = classifyChildren.length%>
                                         <%for(var j =0;j<len;j++){%>
-                                        <%var children = classifyChildren[j]%>
-                                        <div class="type-container">
-                                            <span data-relation = "children" class="type-item" data-mark="<%=children.mark%>"><%=children.type%></span>
-                                            <span class = "deleteBnt" >X</span>
-                                        </div>
-                                    <%}%>
-                                    <%}else{%>
+                                            <%var children = classifyChildren[j]%>
+                                            <div class="type-container">
+                                                <span data-relation = "children" class="type-item" data-mark="<%=children.mark%>"><%=children.type%></span>
+                                                <span class = "deleteBnt" >X</span>
+                                            </div>
+                                        <%}%>
                                     <%}%>
                                 </div>
                             </div>

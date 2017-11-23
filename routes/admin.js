@@ -1,6 +1,7 @@
 var express = require('express');
     router = express.Router(),
-    controller = require('../controller/adminController');
+    controller = require('../controller/adminController'),
+    assist = require('../controller/assist');
 /* GET users listing. */
 //登陆验证
 router.post('/login', function(req, res, next){
@@ -37,7 +38,13 @@ router.get('/category', function(req, res, next){
 });
 //文章删除
 router.post('/del/:type', function(req, res, next){
-    controller.deleteSomething(req, res, next);
+    var json = assist.security(req.body),
+        collectionName = req.params.type;
+    controller.deleteSomething(collectionName, json,next, function(result){
+        var reply = {ok: result.ok};
+        res.json(reply);
+        res.end();
+    });
 });
 //编辑文章
 router.post('/update/:type', function(req, res, next){
@@ -51,8 +58,36 @@ router.post('/new/:type', function(req, res, next){
     controller.insertClassify(req, res, next);
 });
 //更新文章列表
-router.post('/category/update', function(req, res, next){
-    controller.updateCategory(req, res, next);
+router.post('/category/:type/:handle', function(req, res, next){
+    var handleType = req.params.handle;
+    switch(handleType){
+        case "update" :
+                controller.updateCategory(req, res, next);
+                break;
+        case "del" :
+                controller.updateCategory(req, res, next, function(result){
+                    if(result.ok){
+                        var json = {parentTag : assist.security(req.body).childrenMark},
+                            collectionName = req.params.type;
+                        controller.deleteSomething(collectionName, json, next, function(result){
+                            var reply = {ok: result.ok};
+                            res.json(reply);
+                            res.end();
+                        });
+                    }
+                });
+                break;
+        default:
+                break;
+    }
+});
+router.post('/category/del', function(req, res, next){
+    controller.updateCategory(req, res, next, function(result){
+        if(result.ok){
+            req.params.type = "article";
+            controller.deleteSomething(req, res,next);
+        }
+    });
 });
 //分页显示
 router.post('/query/:type', function(req, res, next){

@@ -96,13 +96,11 @@ exports.checkLogin = function(req, res, next){
     });
 };
 /*从数据库中删除某些数据*/
-exports.deleteSomething = function(req, res, next){
-    var json =assist.security(req.body),
-        collectionName = req.params.type;
+exports.deleteSomething = function(collectionName, json, next, callback){
     model.deleteDocument(collectionName, json, function(result){
-        var reply = {ok: result.ok};
-        res.json(reply);
-        res.end();
+        if(callback){
+            callback(result);
+        }
     });
 };
 //更新
@@ -142,11 +140,15 @@ exports.querySomething = function(req, res, next){
     })
 };
 //更新文章列表
-exports.updateCategory = function(req, res, next){
+exports.updateCategory = function(req, res, next,callback){
     var defaultCollection = "classify",
         updateStr = assist.security(req.body),
         whereStr = {"mark": updateStr.mark};
     model.updateDocument(defaultCollection,whereStr,updateStr, function(result){
-        res.json({ok:result.ok});
+        if(callback){
+            callback(result)
+        }else {
+            res.json({ok: result.ok});
+        }
     })
 };
