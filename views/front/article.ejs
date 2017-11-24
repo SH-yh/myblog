@@ -7,21 +7,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>文章</title>
     <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico">
-    <link rel="stylesheet" href="/stylesheets/article.css">
+    <link rel="stylesheet" href="/stylesheets/front/article.css">
 </head>
-<body>
-<div id="app">
-    <div class="header">
-        <div class="header-body clearfix">
-            <a class="header-title" href="/">烟火 Blog</a>
-            <ul class="header-nav">
-                <li><a href="/" target="_self">首页</a></li>
-                <li class="active"><a href="/article" target="_self">文章</a></li>
-                <li><a href="/demo" target="_self">案例</a></li>
-                <li><a href="/board" target="_self">留言板</a></li>
-            </ul>
-        </div>
-    </div>
+    <%include ../public/frontHead.ejs%>
     <div class="body">
         <div class="container clearfix">
             <div class="body-article-list">
@@ -89,7 +77,6 @@
         </div>
     </div>
     <%include ../public/footer.ejs%>
-</div>
 <script data-main="/javascripts/article.js" src="/javascripts/require.min.js"></script>
 </body>
 </html>

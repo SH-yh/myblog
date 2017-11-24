@@ -1,12 +1,17 @@
-@import url('../reset.css');
-@import url('../paging.css');
-@import url('../footer.css');
+@import url('../public/reset.css');
+@import url('../public/paging.css');
+@import url('../public/footer.css');
 @import url('head.css');
+html {
+    height:100%;
+}
 body {
+    height:100%;
     background: url("../../images/bg.gif");
 }
 .container {
     width: 960px;
+    min-height:100%;
     margin: 0 auto;
     padding: 20px 0;
     overflow: hidden;

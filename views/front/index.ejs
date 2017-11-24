@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
     <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico">
-    <link rel="stylesheet" href="/stylesheets/style.css">
+    <link rel="stylesheet" href="/stylesheets/front/style.css">
+    <link rel="stylesheet" media="(max-width: 1280px)" href="/stylesheets/front/mobile/mid.css">
 </head>
 <body>
     <div id="load">
@@ -17,29 +18,19 @@
             您的浏览器不支持Canvas,请升级浏览器！
         </canvas>
     </div>
-  <div id="app">
-    <div class="header">
-        <div class="header-body clearfix">
-          <a class="header-title" href="/">烟火 Blog</a>
-          <ul class="header-nav">
-              <li class="active" ><a href="/" target="_self">首页</a></li>
-              <li><a href="/article" target="_self">文章</a></li>
-              <li><a href="/demo" target="_self">案例</a></li>
-              <li><a href="/board" target="_self">留言板</a></li>
-          </ul>
+    <div id="app">
+        <%include ../public/frontHead.ejs%>
+        <div class="body">
+            <div>
+                <h1 class="body-title">I am here</h1>
+                <p class="body-description">Life is so charming</p>
+            </div>
+            <div class="body-nav">
+                <a href="https://github.com/SH-yh" target="_self">GitHub</a>
+                <a href="/article" target="_self">Blog</a>
+            </div>
+        </div>
       </div>
-    </div>
-    <div class="body">
-        <div>
-            <h1 class="body-title">I am here</h1>
-            <p class="body-description">Life is so charming</p>
-        </div>
-        <div class="body-nav">
-            <a href="https://github.com/SH-yh" target="_self">GitHub</a>
-            <a href="/article" target="_self">Blog</a>
-        </div>
-    </div>
-  </div>
 
 
   <script type="text/javascript" data-main="/javascripts/home" src="/javascripts/require.min.js"></script>

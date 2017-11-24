@@ -36,7 +36,6 @@ requirejs(['multifunction'], function(){
             defaulateCollection = 'article';
             delBtn.on('click', callback);
             function callback(){
-
                 var listItem = $(this).parent().parent();
                 var id = listItem.attr('data-id');
                 json = {

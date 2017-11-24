@@ -1,0 +1,24 @@
+.paging {
+    padding: 20px 0;
+    text-align: center;
+}
+.back, .next, .page-container {
+    display: inline-block;
+    cursor: pointer;
+}
+.page-container {
+    font-size: 16px;
+}
+.paging-wrap {
+    width: 100px;
+    margin: 0 auto;
+}
+.select-page, .page-sum {
+    display: inline-block;
+    width:40px;
+    height:20px;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    text-align: center;
+}

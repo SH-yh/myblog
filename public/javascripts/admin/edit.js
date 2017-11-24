@@ -110,14 +110,26 @@ requirejs(["quill","underscore","https://code.jquery.com/jquery-1.9.1.min.js"], 
             },
             startFetch: function(){
                 var json = app.getJson();
-                console.log(json);
                 if(!app.check(json)){
                     var warnMessage = "请填写完整！";
                     $('#warn').text(warnMessage);
                     return;
                 };
                 var url = app.setUrl(json.id);
+                if(!json.id){
+                    json.id = app.generId();
+                }
                 app.fetch(url, json)
+            },
+            generId : function(){
+                var date = new Date(),
+                    year = date.getFullYear().toString().substr(2,2),
+                    month = (date.getMonth() + 1).toString(),
+                    hour = date.getHours().toString(),
+                    min = date.getMinutes().toString(),
+                    sec = date.getSeconds().toString();
+                var id = year+month+hour+min+sec;
+                return id;
             },
             toggleRadio: function(){
                 $('.parentType').on('focus', app.toggle);

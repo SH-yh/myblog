@@ -116,7 +116,6 @@ exports.insertArticle = function(req, res, next){
     var defaultCollection = req.params.type,
         insertStr = assist.security(req.body);
     model.findCount(defaultCollection, {}, function(count){
-        insertStr.id = assist.setId(count + 1);
         model.insertDocument(defaultCollection, insertStr, function(result){
             res.json({ok:result.ok});
             res.end();

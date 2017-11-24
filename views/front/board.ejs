@@ -7,22 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>留言板</title>
     <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico">
-    <link rel="stylesheet" href="/stylesheets/board.css">
+    <link rel="stylesheet" href="/stylesheets/front/board.css">
 </head>
 <body>
-<div id="app">
-    <div class="header">
-        <div class="header-body clearfix">
-            <a class="header-title" href="/">烟火 Blog</a>
-            <ul class="header-nav">
-                <li  ><a href="/" target="_self">首页</a></li>
-                <li><a href="/article" target="_self">文章</a></li>
-                <li><a href="/demo" target="_self">案例</a></li>
-                <li class="active"><a href="/board" target="_self">留言板</a></li>
-            </ul>
-        </div>
-    </div>
+    <%include ../public/frontHead.ejs%>
     <p class="tip">该功能暂未开放，敬请期待！</p>
-</div>
+    <script data-main = "/javascripts/normal.js" src="/javascripts/require.min.js"></script>
 </body>
 </html>

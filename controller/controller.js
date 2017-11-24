@@ -21,7 +21,8 @@ exports.renderArticleList = function(req, res, next){
                         "classify": classify,
                         "pageSum": Math.ceil(sum / defaultAmount),
                         "typeTag": articleType,
-                        "type": type
+                        "type": type,
+                        "index": 1
                     });
                     res.end();
                 })
@@ -38,7 +39,8 @@ exports.renderArticleContent = function(req, res, next){
     defaultDocument = "article";
     model.findDocument(defaultDocument,{"id": id}, {}, {}, function(doc){
         res.render("front/articleContent", {
-            "content": doc[0]
+            "content": doc[0],
+            "index": 1
         });
     });
 };
@@ -57,7 +59,9 @@ exports.replyPaging = function(req, res, next){
     });
 };
 exports.renderHome = function(req, res, next){
-    res.render('front/index');
+    res.render('front/index',{
+        index: 0
+    });
     res.end();
 };
 exports.renderDome = function(req, res, next){
@@ -71,13 +75,16 @@ exports.renderDome = function(req, res, next){
                 "pageSum" : Math.ceil(count / defaultAmount),
                 "typeTag": "parentTag",
                 "type" : "",
-                "content" : content
+                "content" : content,
+                "index": 2
             });
             res.end();
         });
     });
 };
 exports.renderBoard = function(req, res, next){
-    res.render('front/board');
+    res.render('front/board', {
+        "index": 3
+    });
     res.end();
 };

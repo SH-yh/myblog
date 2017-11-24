@@ -28,8 +28,15 @@ requirejs([ 'multifunction'],function(){
                 var defaultUrl = "cases",
                     amount = 8;
                 plugs.paging(defaluteTemplate, defaultUrl, amount);
+            },
+            start : function(){
+                var oWidth = $(window).width();
+                app.paging();
+                if(oWidth <= 1280){
+                    plugs.midMenu();
+                }
             }
         };
-        app.paging();
+        app.start();
     })
 });

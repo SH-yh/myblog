@@ -40,9 +40,16 @@ requirejs(['https://code.jquery.com/jquery-1.9.1.min.js', 'multifunction'],funct
            },
            up: function(){
                plugs.goUp("#up");//页面向上滚动
+           },
+           start: function(){
+               var oWidth = $(window).width();
+               this.up();
+               this.paging();
+               if(oWidth <= 1280){
+                   plugs.midMenu();
+               }
            }
        };
-       app.up();
-       app.paging();
+       app.start();
    })
 });

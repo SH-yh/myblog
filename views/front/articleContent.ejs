@@ -7,21 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>首页</title>
     <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico">
-    <link rel="stylesheet" href="/stylesheets/articleContent.css">
+    <link rel="stylesheet" href="/stylesheets/front/articleContent.css">
 </head>
 <body>
-<div id="app">
-    <div class="header">
-        <div class="header-body clearfix">
-            <a class="header-title" href="/">烟火 Blog</a>
-            <ul class="header-nav">
-                <li><a href="/" target="_self">首页</a></li>
-                <li class="active"><a href="/article" target="_self">文章</a></li>
-                <li><a href="/demo" target="_self">案例</a></li>
-                <li><a href="/board" target="_self">留言板</a></li>
-            </ul>
-        </div>
-    </div>
+
+    <%include ../public/frontHead.ejs%>
     <div class="body">
         <div class="container">
             <div class="content">
@@ -42,10 +32,10 @@
                     </div>
                 </div>
             </div>
-            <div class="recommend"></div>
+           <!-- <div class="recommend"></div>-->
         </div>
     </div>
     <%include ../public/footer.ejs%>
-</div>
+    <script data-main = "/javascripts/normal.js" src="/javascripts/require.min.js"></script>
 </body>
 </html>

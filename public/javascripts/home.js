@@ -1,6 +1,7 @@
-requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
+requirejs(["https://code.jquery.com/jquery-1.9.1.min.js", "javascripts/multifunction.js"], function(){
     $(function(){
-        var oCvs = $('#cvs')[0];
+        var oCvs = $('#cvs')[0],
+            oCtx = null;
         var oBckImg = $('body'),
             src = "/images/home/homebck.png",
             oLoad = $('#load'),
@@ -23,7 +24,7 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
         function loadBck(src){
             var img = new Image();
             img.src = src;
-            oBckImg.css("background", "url("+src+") no-repeat center ");
+            oBckImg.css("background", "url("+src+") no-repeat center");
             img.onload = function(){
                 setTimeout(function(){
                     id ?  cancelAnimationFrame(id) : animationLoading = null;
@@ -72,11 +73,18 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js"], function(){
             oCtx.textAlign = "center";
             oCtx.fillText(text, x, y)
         }
-        if(oCvs.getContext){
-            var oCtx = oCvs.getContext('2d');
-            loadBck(src);
-        }else{
-            $('body').children('#load').remove();
+        function start(){
+            var oWidth = $(window).width();
+            if(oCvs.getContext){
+                oCtx = oCvs.getContext('2d');
+                loadBck(src);
+                if(oWidth <= 1280){
+                    plugs.midMenu();
+                }
+            }else{
+                $('body').children('#load').remove();
+            }
         }
+        start();
     });
 });

@@ -1,0 +1,86 @@
+.header {
+    position:fixed;
+    top:0;
+    width: 100%;
+    box-shadow: 1px 0px 10px 0px #000;
+    background: #fefefe;
+    z-index:999;
+}
+.header-body {
+    max-width:1280px;
+    margin:0 auto;
+}
+.header-title {
+    display: inline-block;
+    font-size: 24px;
+    font-weight: 700;
+    padding: 20px 0;
+}
+.header-nav {
+    font-size: 18px;
+    float: right;
+}
+.header-nav li {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 22px 24px;
+    cursor: pointer;
+}
+.header-nav li a {
+    width:100%;
+}
+.header-nav li a:hover {
+    color: #0076A4;
+}
+.slide-btn {
+    display: none;
+}
+@media all and (max-width:1280px) {
+    body{
+        position: relative;
+        overflow-x: hidden;
+    }
+    .header-body {
+        margin:0 20px;
+    }
+    .active:after {
+        background: #C00;
+    }
+    .header-nav{
+        position: absolute;
+        right:-520px;
+        top:64px;
+        width:500px;
+        background:#fefefe;
+    }
+    .header-nav li{
+        display: block;
+        margin-bottom:2px;
+        text-align: center;
+    }
+    .header-nav li:nth-child(odd){
+        background:#ADDBE1;
+    }
+    .header-nav li:nth-child(odd) a {
+        color:#fff;
+    }
+    .slide-btn{
+        position: absolute;
+        display: block;
+        top:0;bottom:0;
+        right:20px;
+        width:40px;
+        height:36px;
+        margin:auto;
+        cursor: pointer;
+    }
+    .slide-stripe {
+        display: block;
+        width:100%;
+        height:4px;
+        margin:6px 0;
+        background:#333;
+    }
+
+}

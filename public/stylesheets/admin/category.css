@@ -1,4 +1,4 @@
-@import url('../reset.css');
+@import url('../public/reset.css');
 @import url('head.css');
 .container {
     width: 960px;

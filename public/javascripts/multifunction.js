@@ -188,7 +188,26 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                 }
             })
         },
-
+        midMenu: function(){
+            var oSlideBtn = $('#slide_btn'),
+                oHeaderMenu = $('#header_menu'),
+                mark = true,
+                displayState = "0px",
+                noneState = "-520px";
+            oSlideBtn.on('click',slideHandle);
+            function slideHandle(){
+                if(mark){
+                    oHeaderMenu.animate({
+                        right: displayState,
+                    }, 500);
+                }else{
+                    oHeaderMenu.animate({
+                        right: noneState
+                    }, 500);
+                }
+                mark = !mark;
+            }
+        }
     };
     return plugs;
 });

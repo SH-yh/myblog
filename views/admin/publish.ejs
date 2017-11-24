@@ -15,7 +15,9 @@
     <div class = "edit-body">
         <div class="edit-title division">
             <span>标题 :</span>
-            <input  spellcheck="false" id="article_title" type="text" value=""/>
+            <div>
+                <input  spellcheck="false" class = "article_title" id="article_title" type="text" value=""/>
+            </div>
         </div>
         <div class="editor-content">
             <p class="title-tip">内容 :</p>
@@ -60,7 +62,7 @@
                 </li>
                 <%}%>
                 <%}else{%>
-                <li class="specific-classify-item">无子类别</li>
+                    <li class="specific-classify-item">无子类别</li>
                 <%}%>
             </ul>
         </div>
