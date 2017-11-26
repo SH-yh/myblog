@@ -1,6 +1,4 @@
-/**
- * Created by HJ on 2017/10/17.
- */
+var fs = require('fs');
 exports.getType = function(item, target){
     if(item){
         var resulte = check(item, target);
@@ -56,3 +54,25 @@ exports.setId = function(count){
     }
     return id;
 };
+exports.readFile = function(path, callback){
+    fs.readFile(path, function(err, data){
+        if(callback){
+            callback(err,data);
+        }
+    });
+};
+exports.getMine = function(){
+    var args = arguments;
+    var len = args.length;
+    for(var i = 0; i < len;i++){
+        var item = args[i];
+        if(item){
+
+        }
+    }
+};
+function findMine(item){
+    switch(item){
+
+    }
+}

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Fly</title>
+	<style type="text/css">
+		* {
+			margin:0;
+			padding:0;
+		}
+		.box {
+			position:relative;
+			width : 700px;
+			height : 500px;
+			margin: 10px auto;
+			text-align: center;
+		}
+		canvas {
+			display:block;
+			border:2px solid #111;
+		}
+		#points {
+			position:absolute;
+			top:10px;
+			left:10px;
+			font-size: 24px;
+			letter-spacing: 2px;
+		}
+		.tip {
+			font-size: 18px;
+			margin:10px 0;
+		}
+		#onceAgain {
+			width:150px;
+			height:80px;
+			line-height: 40px;
+			border:1px solid #000;
+			text-align: center;
+			position: absolute;
+			top:0;bottom:0;left:0;right:0;
+			margin:auto;
+			background:#fff;
+			cursor:pointer;
+			display: none;
+		}
+	</style>
+	<script type="text/javascript" src="js/preloadjs-0.4.1.min.js"></script>
+	<script type="text/javascript" src="js/easeljs-0.7.1.min.js"></script>
+	<script type="text/javascript" src="js/person.js"></script>
+	<script type="text/javascript" src="js/stone.js"></script>
+</head>
+<body>
+	<div class="box">
+		<canvas id="cvs" width="700" height="500">
+			您的浏览器不支持Canvas，请升级浏览器！
+		</canvas>
+		<div id="onceAgain"></div>
+		<div id="points">分数:0</div>
+		<div class="tip">按空格进行起跳</div>
+	</div>
+	<script type="text/javascript" src="js/fly.js"></script>
+</body>
+</html>

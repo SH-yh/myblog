@@ -39,48 +39,53 @@ requirejs(['https://code.jquery.com/jquery-1.9.1.min.js', 'multifunction'],funct
                plugs.paging(defalutTemplete, "article", 6);
            },
            extend: function(){
-                var oWidth = $(window).width(),
-                    mark = true,
-                    timer = null,
-                    duration = 300,
-                    oClassify = $('#classify');
-                if(oWidth < 1280){
-                    $('#expand_list').on('click', handle);
-                    function handle(){
-                        if(timer){
-                            clearTimeout(timer);
-                        }
-                        timer = setTimeout(handleExtend, duration);
-                        function handleExtend(){
-                            if(mark){
-                                oClassify.animate({
-                                    top:'90px'
-                                },300, function(){
-                                    oClassify.animate({
-                                        top:'64px'
-                                    },200,function(){
-                                        oClassify.animate({
-                                            top:'90px'
-                                        },300,function(){
-                                            oClassify.animate({
-                                                top:'64px'
-                                            },200, function(){
-                                                duration = 100;
-                                            })
-                                        })
-                                    })
-                                });
-                            }else{
-                                oClassify.animate({
-                                    top:'-100%'
-                                },500, function(){
-                                    duration = 100;
-                                });
-                            }
-                            mark = !mark;
-                        }
-                    }
-                }
+               handle();
+               $(window).on('resize',handle)
+               function handle(){
+                   var oWidth = $(window).width(),
+                       mark = true,
+                       timer = null,
+                       duration = 300,
+                       oClassify = $('#classify');
+                   if(oWidth < 1280){
+                       $('#expand_list').on('click', handle);
+                       function handle(){
+                           if(timer){
+                               clearTimeout(timer);
+                           }
+                           timer = setTimeout(handleExtend, duration);
+                           function handleExtend(){
+                               if(mark){
+                                   oClassify.animate({
+                                       top:'90px'
+                                   },300, function(){
+                                       oClassify.animate({
+                                           top:'64px'
+                                       },200,function(){
+                                           oClassify.animate({
+                                               top:'90px'
+                                           },300,function(){
+                                               oClassify.animate({
+                                                   top:'64px'
+                                               },200, function(){
+                                                   duration = 100;
+                                               })
+                                           })
+                                       })
+                                   });
+                               }else{
+                                   oClassify.animate({
+                                       top:'-100%'
+                                   },200, function(){
+                                       duration = 100;
+                                   });
+                               }
+                               mark = !mark;
+                           }
+                       }
+                   }
+               }
+
            },
            up: function(){
                plugs.goUp("#up");//页面向上滚动

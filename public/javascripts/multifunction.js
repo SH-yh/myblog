@@ -205,11 +205,11 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                     if(mark){
                         oHeaderMenu.animate({
                             right: displayState,
-                        }, 500);
+                        }, 350);
                     }else{
                         oHeaderMenu.animate({
                             right: noneState
-                        }, 500);
+                        }, 350);
                     }
                     mark = !mark;
                 }

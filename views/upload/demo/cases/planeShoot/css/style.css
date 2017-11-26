@@ -1,0 +1,74 @@
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	width:100%;
+	height:100%;
+	overflow: hidden;
+}
+#cvs {
+	display:block;
+	border: 1px solid #000;
+	margin: 0 auto;
+	background:#000;
+}
+.game {
+	position:relative;
+	width: 700px;
+	height: 100%;
+	margin: 0 auto;
+}
+.movebg {
+	position: absolute;
+	top:0;
+	width :100%;
+	height: 200%;
+	background: url("../image/bg_1_1.jpg");
+	background-size: 100% 50%;
+	z-index: -1;
+}
+#gameStart {
+	position:absolute;
+	top:400px;
+	width:100%;
+	height:90px;
+	color:#fff;
+	text-align: center;
+	font:20px "微软雅黑";
+	display: none;
+}
+#gameStart  #gs-start {
+	display: inline-block;
+	width :180px;
+	height: 60px;
+	background:#CCC;
+	border:5px solid #fff;
+	border-radius:5px;
+	line-height: 60px;
+	cursor: pointer;
+	color: #000;
+}
+#gameStart  #gs-start:hover {
+	color : #f00;
+}
+button {
+	position:absolute;
+	right:-150px;
+	display: block;
+	text-align: center;
+	width: 140px;
+	padding:5px 0;
+}
+#god {
+	top:100px;
+}
+#verygod {
+	top:150px;
+}
+#pertygod {
+	top:200px;
+}
+#nogod {
+	top:250px;
+}

@@ -32,6 +32,23 @@ exports.findDocument = function(collectionName, queryJson, queryConfig, sort, ca
         });
     });
 };
+exports.findOneDocument = function(collectionName,queryJson,projection,callback){
+    var queryJson = queryJson || {},
+        projection = projection || {};
+    _connecteMongo(function(db){
+        db.collection(collectionName).findOne(queryJson,projection, function (err, data) {
+            if(err){
+                throw new Error(err);
+                db.close();
+                return;
+            }else{
+                if(callback){
+                    callback(data)
+                }
+            }
+      });
+    });
+};
 /*查找总数*/
 exports.findCount = function(collectionName,  queryJson, callback){
     _connecteMongo(function(db){

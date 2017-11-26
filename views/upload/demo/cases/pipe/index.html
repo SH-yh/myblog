@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		* {
+			margin:0;
+			padding:0;
+		}
+		body {
+			width:100%;
+			height:100%;
+			overflow: hidden;
+		}
+		canvas {
+			display: block;
+			margin:0 auto;
+			border:1px solid #111;
+		}
+		.box {
+			display: none;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="cvs" width="800" height="800">
+		您的浏览器不支持Canvas，请升级浏览器
+	</canvas>
+	<div class="box">
+		<img src="images/pipe1.png"  id="pipe1" alt="">
+		<img src="images/pipe2.png"  id="pipe2" alt="">
+		<img src="images/pipes0.jpg" id="pipe0"  alt="">
+		<img src="images/start.png"  id="start" alt="">
+	</div>
+	<script type="text/javascript" src="js/data.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+</body>
+</html>

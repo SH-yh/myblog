@@ -15,15 +15,15 @@ requirejs([ 'multifunction'],function(){
         var app = {
             paging: function(){
                 var defaluteTemplate = "<li class='demo-item'>"+
+                    "<a href=/cases/<{=content.id}>>"+
                     "<div class='item-head'>"+
-                    "<a href=<{=content.src}>>"+
-                    "<img src=<{=content.imgSrc}> alt=<{=content.title}>"+
-                    "</a>"+
+                    "<img src=<{=content.imgSrc}> alt=<{=content.title}>>"+
                     "</div>"+
                     "<div class='item-body'>"+
                     "<h1 class='demo-title'><{=content.title}></h1>"+
                     "<p class='demo-describe'><{=content.introduce}></p>"+
                     "</div>"+
+                    "</a>"+
                     "</li>";
                 var defaultUrl = "cases",
                     amount = 8;

@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>案例展示</title>
+    <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/stylesheets/front/caseShow.css">
+</head>
+<body>
+<%include ../public/frontHead.ejs%>
+<div class="body">
+    <div class="container">
+        <%=caseContent%>
+    </div>
+    <div class="case-btn">
+        <span class="case-show"><a target="_blank" href="/cases/<%=caseId%>/<%=caseName%>">查看演示</a></span>
+        <span class="case-down">源码下载</span>
+    </div>
+</div>
+<%include ../public/footer.ejs%>
+
+<script data-main = "/javascripts/normal.js" src="/javascripts/require.min.js"></script>
+</body>
+</html>

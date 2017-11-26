@@ -5,6 +5,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     expressSession = require('express-session'),
     bodyParser = require('body-parser');
+var engines = require('consolidate');
 
 var index = require('./routes/index');
 var admin = require('./routes/admin');
@@ -13,6 +14,8 @@ var app = express();
 
 // 设置视图路径
 app.set('views', path.join(__dirname, 'views'));
+//使用consolidate插件可以使用多种模板
+app.engine('html', engines.ejs);
 app.set('view engine', 'ejs');
 //session设置
 app.use(expressSession({

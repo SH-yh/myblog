@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div class="box">
+		<canvas id="canvas" height="560" width="560">
+			您的浏览器太旧了，不支持Canvas，请升级！
+		</canvas>
+		<div id="msg"></div>
+		<button onclick="nextLevel(-1)">上一关</button>
+		<button onclick="nextLevel(1)">下一关</button>
+		<button onclick="nextLevel(0)">重玩本关</button>
+		<button onclick="help()">游戏说明</button>
+		<button onclick="preBack()">后退一步</button>
+		选择游戏关卡
+		<input type="text" onblur = "selectionLevel(this.value)" />
+	</div>
+	<script type="text/javascript" src="./js/mapdata100.js"></script>
+	<script type="text/javascript" src="./js/vent.js"></script>
+</body>
+</html>
