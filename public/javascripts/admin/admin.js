@@ -13,7 +13,7 @@ requirejs(['multifunction'], function(){
     var app = {
         paging: function(){
             var defaluteTemplate = '<li class="list-item">'+
-                '<a href="/article/<{=content.type}>/<{=content.id}>">'+
+                '<a href=/article/<{=content.type}>/<{=content.id}>>'+
                 '<span class="item-title"><{=content.title}></span>'+
                 '</a>'+
                 '<span class="item-data">(<{=content.date}>)</span>'+

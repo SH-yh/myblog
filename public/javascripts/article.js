@@ -18,7 +18,7 @@ requirejs(['https://code.jquery.com/jquery-1.9.1.min.js', 'multifunction'],funct
                    '<div class="list-item-warp">'+
                    '<div class="article-header">'+
                    '<h1 class="article-title">'+
-                   '<a href=/article/<{=content.type=>/{{=content.id}}><{=content.title}></a>'+
+                   '<a href=/article/<{=content.type}>/<{=content.id}>><{=content.title}></a>'+
                    '</h1>'+
                    '<div class="clearfix">'+
                    '<p class="article-overview">'+
