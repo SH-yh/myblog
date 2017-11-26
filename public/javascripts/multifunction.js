@@ -188,25 +188,32 @@ define(["https://code.jquery.com/jquery-1.9.1.min.js", "underscore" ], function(
                 }
             })
         },
-        midMenu: function(){
-            var oSlideBtn = $('#slide_btn'),
-                oHeaderMenu = $('#header_menu'),
-                mark = true,
-                displayState = "0px",
-                noneState = "-520px";
-            oSlideBtn.on('click',slideHandle);
-            function slideHandle(){
-                if(mark){
-                    oHeaderMenu.animate({
-                        right: displayState,
-                    }, 500);
-                }else{
-                    oHeaderMenu.animate({
-                        right: noneState
-                    }, 500);
-                }
-                mark = !mark;
+        midMenu: function(limit){
+            var oWidth = $(window).width();
+            if(oWidth < limit){
+                change();
             }
+            $(window).on('resize', change);
+            function change(){
+                var oSlideBtn = $('#slide_btn'),
+                    oHeaderMenu = $('#header_menu'),
+                    mark = true,
+                    displayState = "0px",
+                    noneState = "-100%";
+                oSlideBtn.on('click',slideHandle);
+                function slideHandle(){
+                    if(mark){
+                        oHeaderMenu.animate({
+                            right: displayState,
+                        }, 500);
+                    }else{
+                        oHeaderMenu.animate({
+                            right: noneState
+                        }, 500);
+                    }
+                    mark = !mark;
+                }
+            };
         }
     };
     return plugs;

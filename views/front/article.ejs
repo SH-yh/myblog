@@ -33,20 +33,23 @@
                                 </div>
                             </div>
                             <div class="article-footer">
-                                <a href="#" class="article-type"><%=content[i].type%></a>
+                                <span  class="article-type"><%=content[i].type%></span>
                             </div>
                         </div>
                     </li>
                     <%}%>
                 </ul>
+                <div class="list-btn">
+                    <span class="list-title" id="expand_list">文章分类</span>
+                </div>
                 <%if(pageSum){%>
                     <%include ../public/paging.ejs%>
                 <%}%>
             </div>
-            <div class="body-classify">
+            <div class="body-classify" id="classify">
                 <div class="classify-title">文章分类</div>
                 <ul class="article-classify">
-                <%for(var j = 0; j < classify.length; j++){%>
+                    <%for(var j = 0; j < classify.length; j++){%>
                     <li class="item" >
                         <div>
                             <a href="/article/<%=classify[j].mark%>"><%=classify[j].type%></a>
@@ -54,19 +57,18 @@
                     </li>
                     <% var children = classify[j].children%>
                     <%if(children){%>
-                        <% var len = children.length %>
-                        <%for(var k = 0; k < len; k++){%>
-                            <li class="item child-classify">
-                                <div>
-                                    <a href="/article/<%=children[k].mark%>"><%=children[k].type%></a>
-                                </div>
-                            </li>
-                        <%}%>
+                    <% var len = children.length %>
+                    <%for(var k = 0; k < len; k++){%>
+                    <li class="item child-classify">
+                        <div>
+                            <a href="/article/<%=children[k].mark%>"><%=children[k].type%></a>
+                        </div>
+                    </li>
                     <%}%>
-                <%}%>
+                    <%}%>
+                    <%}%>
                 </ul>
             </div>
-
         </div>
         <div id="up" class="pull-up">
             <div class="up-content">

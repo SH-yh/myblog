@@ -74,13 +74,11 @@ requirejs(["https://code.jquery.com/jquery-1.9.1.min.js", "javascripts/multifunc
             oCtx.fillText(text, x, y)
         }
         function start(){
-            var oWidth = $(window).width();
+            var oLimit = 1280;
             if(oCvs.getContext){
                 oCtx = oCvs.getContext('2d');
                 loadBck(src);
-                if(oWidth <= 1280){
-                    plugs.midMenu();
-                }
+                plugs.midMenu(oLimit);
             }else{
                 $('body').children('#load').remove();
             }

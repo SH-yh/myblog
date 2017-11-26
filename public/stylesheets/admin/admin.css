@@ -10,7 +10,7 @@ body {
     background: url("../../images/bg.gif");
 }
 .container {
-    width: 960px;
+    max-width: 960px;
     min-height:100%;
     margin: 0 auto;
     padding: 20px 0;

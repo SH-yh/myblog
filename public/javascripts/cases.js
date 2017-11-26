@@ -30,11 +30,9 @@ requirejs([ 'multifunction'],function(){
                 plugs.paging(defaluteTemplate, defaultUrl, amount);
             },
             start : function(){
-                var oWidth = $(window).width();
+                var oLimit = 1280;
                 app.paging();
-                if(oWidth <= 1280){
-                    plugs.midMenu();
-                }
+                plugs.midMenu(oLimit);
             }
         };
         app.start();

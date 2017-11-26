@@ -36,7 +36,7 @@
 .slide-btn {
     display: none;
 }
-@media all and (max-width:1280px) {
+@media all and (max-width:1280px){
     body{
         position: relative;
         overflow-x: hidden;
@@ -49,7 +49,7 @@
     }
     .header-nav{
         position: absolute;
-        right:-520px;
+        right:-100%;
         top:64px;
         width:500px;
         background:#fefefe;
@@ -82,5 +82,9 @@
         margin:6px 0;
         background:#333;
     }
-
+}
+@media all and (max-width:768px) {
+    .header-nav{
+        width:100%;
+    }
 }
