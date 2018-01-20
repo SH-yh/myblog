@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico">
+    <link rel="stylesheet" href="/stylesheets/admin/cases.css">
+    <title>案例管理</title>
+</head>
+<body>
+    <div class="container">
+        <%include ../public/adminHead.ejs%>
+        <div class="body">
+            <%var caseLength =  caseInfo.length%>
+            <ul class="case-wrap" id="content-container">
+                <% for(var i = 0; i < caseLength; i++) { %>
+                    <%var item = caseInfo[i]%>
+                    <li class="case-item">
+                        <span class="case-title"><%=item.title%></span>
+                        <div class="btn-wrap">
+                          <!--  <span class="handle-btn edit" data-id=<%=item.id%>>编辑</span>-->
+                            <span class="handle-btn delete" data-id=<%=item.id%> >删除</span>
+                        </div>
+                    </li>
+                <%}%>
+            </ul>
+            <%include ../public/paging.ejs%>
+            <div class="show-case-wrap"><sapn class="show-case-btn" id="show_btn">添加案例</sapn></div>
+        </div>
+    </div>
+    <div class="add-case" id="form_container">
+        <form class="case-form" enctype="multipart/form-data" method="POST" action="http://127.0.0.1:3000/admin/add/cases">
+            <input type="text" name="caseTitle" placeholder="请填写案例名称"/>
+            <input type="text" name="caseName" placeholder="请填写案例别称"/>
+            <textarea rows="10" cols="30" name="caseContent">请添加案例简介</textarea>
+            <div class="up-wrap">
+                <label for="casePic">
+                    <span class="up-tip">请上传图片</span><input type="file" id="casePic" name="casePic"/>
+                </label>
+                <label for="caseFiles">
+                    <span class="up-tip">请上传案例</span><input type="file" id= "caseFiles" multiple name="caseFiles">
+                </label>
+            </div>
+            <div class="up-wrap" id="upload_item_show"></div>
+            <button class="submit-btn" id="submit">确认</button>
+            <sapn class="close-btn" id="form_close">x</sapn>
+        </form>
+    </div>
+    <script data-main="/javascripts/admin/case.js" src="/javascripts/require.min.js"></script>
+</body>
+</html>

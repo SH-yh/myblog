@@ -21,7 +21,7 @@ body {
 .title-tip{
     padding: 15px 0;
 }
-.article_title {
+#article_title {
     width:100%;
     border: none;
     outline: none;

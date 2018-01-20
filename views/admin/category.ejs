@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="shortcut icon" type="image/ico" href="/images/favicon.png">
+    <link rel="shortcut icon" type="image/ico" href="/images/favicon.ico">
     <title>类别管理</title>
     <link rel="stylesheet" href="/stylesheets/admin/category.css">
 </head>
@@ -20,7 +20,7 @@
                     <%var classifyContent = classify[i]%>
                     <li class="classify-item">
                         <div class="classify-parent">
-                            <span>父标题:</span>
+                            <span>一级标题:</span>
                             <div class="type">
                                 <div class="typeWarp">
                                     <span data-relation = "parent" class="type-item" data-mark="<%=classifyContent.mark%>"><%=classifyContent.type%></span>
@@ -30,7 +30,7 @@
                         </div>
                         <%var classifyChildren = classifyContent.children%>
                         <div class="classify-children">
-                            <span>子标题 :</span>
+                            <span>二级标题 :</span>
                             <div class="type">
                                 <div class="typeWarp">
                                     <%if(classifyChildren != ""){%>

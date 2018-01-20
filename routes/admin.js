@@ -36,6 +36,9 @@ router.get('/publish', function(req, res, next){
 router.get('/category', function(req, res, next){
     controller.renderCategory(req, res, next);
 });
+router.get('/cases', function(req, res, next){
+    controller.renderAdminCases(req, res, next);
+});
 //文章删除
 router.post('/del/:type', function(req, res, next){
     var json = assist.security(req.body),
@@ -88,6 +91,9 @@ router.post('/category/del', function(req, res, next){
             controller.deleteSomething(req, res,next);
         }
     });
+});
+router.post('/add/cases', function(req, res, next){
+    controller.addCaseItem(req, res, next);
 });
 //分页显示
 router.post('/query/:type', function(req, res, next){

@@ -130,8 +130,13 @@ exports.renderCaseShow = function(req, res, next){
         });
     }else{
         fileName = caseName;
-        filePath = basePath+caseName + "/index.html";
-        res.render(filePath);
+        filePath = path.dirname(__dirname)+"/views/"+basePath+caseName + "/index.html";
+        res.sendFile(filePath, function(err){
+            if (err) {
+                res.status(err.status).end();
+            }
+            res.end();
+        });
     }
 };
 exports.renderBoard = function(req, res, next){
@@ -149,7 +154,6 @@ exports.sendFile = function(req, res, next){
     var file = params.file;
     var fileName = params.fileName;
     var contentPath = path.dirname(__dirname)+"/views/"+basePath+fileName+"/"+file;
-    console.log(contentPath);
     res.sendFile(contentPath, function(err){
         if (err) {
             console.log(err);

@@ -1,0 +1,129 @@
+@import url("../public/reset.css");
+@import url("head.css");
+@import url('../public/paging.css');
+html {
+    height:100%;
+}
+body{
+    height: 100%;
+    background: url(../../images/bg.gif);
+}
+.container {
+    position: relative;
+    max-width: 960px;
+    min-height:90%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+.case-wrap {
+    margin-top:40px;
+    background:#fff;
+}
+.case-item {
+    position: relative;
+    padding:12px 8px;
+    border-bottom:1px dashed #bebebe;
+    color:#333;
+    cursor: pointer;
+}
+.case-item:hover {
+    background:#F2F2F2;
+}
+.btn-wrap {
+    display: inline-block;
+    position:absolute;
+    right:0;
+}
+.handle-btn {
+    margin-right:10px;
+}
+.handle-btn:hover {
+    color:#127CC7;
+    cursor:pointer;
+}
+.add-case {
+    position: absolute;
+    left:0;right:0;top:0;
+    margin:auto;
+    max-width:100%;
+    height:100%;
+    margin:0px auto;
+    background:rgba(0,0,0,.5);
+    display: none;
+}
+.case-form {
+    position: relative;
+    display: block;
+    margin:0 auto;
+    padding-top:20px;
+    padding-bottom:20px;
+    margin-top:120px;
+    max-width:380px;
+    background:#fff;
+}
+.add-case input:not([type="file"]), .add-case textarea {
+    display: block;
+    width: 360px;
+    margin: 10px auto;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    text-indent: 16px;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #bebebe;
+}
+.add-case input[type="file"] {
+    display: none;
+}
+.up-wrap {
+    width:360px;
+    margin:10px auto;
+}
+.add-case label {
+    margin:10px auto;
+}
+.up-tip {
+    display: inline-block;
+    padding:12px 8px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 8px;
+    color:#fff;
+    background:#127CC7;
+}
+.submit-btn {
+    display: block;
+    width:360px;
+    padding-top:10px;
+    padding-bottom:10px;
+    background:#127CC7;
+    color:#fff;
+    border:none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    outline: none;
+    margin:10px auto;
+}
+.close-btn {
+    position: absolute;
+    right:10px;top:0px;
+    padding:10px;
+    font-size:18px;
+    cursor: pointer;
+}
+.show-case-wrap {
+    text-align: center;
+}
+.show-case-btn {
+    display: inline-block;
+    padding:10px 8px;
+    background:#127CC7;
+    color:#ffffff;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.upload-item {
+    display: block;
+    padding-bottom: 10px;
+}

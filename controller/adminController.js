@@ -1,8 +1,10 @@
-/**
- * Created by HJ on 2017/10/25.
- */
+var fs = require('fs'),
+    zlib = require('zlib'),
+    path = require('path'),
+    unzip = require('unzip');
 var model = require('../model/db'),
-    assist = require('./assist');
+    assist = require('./assist'),
+    formidable = require('formidable');
 //登陆界面渲染
 exports.renderLogin  = function(req, res, next){
     res.render('admin/login', {
@@ -77,6 +79,26 @@ exports.renderCategory = function(req, res, next){
         });
     });
 };
+exports.renderAdminCases = function(req, res, next){
+        var defaultCollection_A = "cases",
+            defaultCollection_B = 'admin';
+        var  defaultAmount = 8,
+            defaultPage = 0;
+        model.findDocument(defaultCollection_B, {}, {}, {}, function(info){
+            model.findDocument(defaultCollection_A, {}, {amount: defaultAmount, page: defaultPage}, {}, function(caseInfo){
+                model.findCount(defaultCollection_A, {}, function(count){
+                    res.render('admin/case', {
+                        info:info,
+                        caseInfo:caseInfo,
+                        type: "",
+                        typeTag: "parentTag",
+                        pageSum : Math.ceil(count / defaultAmount)
+                    });
+                });
+            });
+        });
+
+};
 //登陆验证
 exports.checkLogin = function(req, res, next){
     var securityJson = assist.security(req.body),
@@ -149,5 +171,58 @@ exports.updateCategory = function(req, res, next,callback){
         }else {
             res.json({ok: result.ok});
         }
+    })
+};
+exports.addCaseItem = function(req, res, next){
+    var collectionName = "cases";
+    var form = new formidable.IncomingForm();
+    var uploadPath = path.resolve(__dirname + "/../views/upload/demo/cases/");
+    form.uploadDir = uploadPath;
+    form.parse(req, function(err, fields, files){
+        err && res.render('404');
+        var casePic = files.casePic,
+            caseFiles = files.caseFiles,
+            caseTile = fields.caseTitle,
+            caseName =fields.caseName,
+            caseContent = fields.caseContent;
+        var picPath = casePic.path,
+            filePath = caseFiles.path;
+        var fileExtname = path.extname(caseFiles.name);
+        var newFile = filePath+fileExtname;
+        //将图片移动到相应文件夹
+        var newPicPath = path.resolve(__dirname + "/../views/upload/demo/casesImg/")+"/"+casePic.name;
+        fs.rename(picPath,newPicPath,function(err){
+            if(err) {
+                res.render('404');
+            }else{
+                console.log(filePath,newFile);
+                fs.rename(filePath,newFile,function(err){
+                    if(err) {
+                        res.render('404');
+                        return;
+                    }else if(/[rar|zip|cab|arj|lzh|ace|tar|gzip|uue|bz2|jar|iso|z]$/g.test(fileExtname)){
+                        var caseCollection = {
+                            "id" : +new Date() + "",
+                            "name" : caseName,
+                            "title" : caseTile,
+                            "imgSrc" : "/storage/casesImg/"+casePic.name,
+                            "content" : caseContent,
+                            "introduce" : caseContent.substr(1, 20)
+                        };
+                        var readStream = fs.createReadStream(newFile);
+                        readStream.pipe(unzip.Extract({ path: uploadPath }));
+
+                        model.insertDocument(collectionName, caseCollection, function(result){
+                            if(result.n == 1 && result.ok == 1) {
+                                fs.unlink(newFile, function(){
+                                    res.redirect('/admin/cases');
+                                })
+                            }
+                        });
+
+                    }
+                });
+            }
+        });
     })
 };

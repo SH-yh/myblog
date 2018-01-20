@@ -1,0 +1,15 @@
+.box {
+	width:450px;
+	height:650px;
+	margin:10px auto;
+	text-align: center;
+}
+button {
+	cursor:pointer;
+	width:100px;
+	height:30px;
+	line-height: 30px;
+}
+canvas {
+	border:1px solid #bebebe;
+}

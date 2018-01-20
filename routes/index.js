@@ -36,11 +36,11 @@ router.get('/cases/:caseId', function(req, res, next){
 router.get('/cases/:caseId/:caseName', function(req, res, next){
     controller.renderCaseShow(req, res, next);
 });
-router.get('/storage/:fileName/:file', function(req, res, next){
-    controller.sendFile(req, res, next);
-});
 router.get('/cases/:caseId/:caseName/:fileType', function(req, res, next){
     controller.renderCaseShow(req, res, next);
+});
+router.get('/storage/:fileName/:file', function(req, res, next){
+    controller.sendFile(req, res, next);
 });
 router.get('/board', function(req, res, next){
     controller.renderBoard(req, res, next);
