@@ -1,4 +1,4 @@
-@import "../public/reset.css";
+@import "../public/reset.css";/*引入外部样式，消除浏览器默认样式*/
 @import "../public/head.css";
 html {
     width: 100%;
@@ -75,17 +75,18 @@ canvas {
     width:160px;
     padding: 10px 20px;
     margin:0 10px;
-    border-radius: 20px;
+    border-radius: 20px;/*设置圆角样式*/
     background: #6bc30d;
     border:1px solid #6bc30d;
-    cursor: pointer;
+    cursor: pointer;/*鼠标样式*/
     color: #fff;
 }
-
+/*按钮鼠标悬浮样式*/
 .body-nav a:hover {
     background: rgba(0, 0, 0, 0.4);
     border:1px solid #fefefe;
 }
+/*当屏幕宽度小于760px时头部标签样式*/
 @media all and (max-width:760px){
     .body-nav a{
         margin-bottom:10px;

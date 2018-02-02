@@ -162,3 +162,6 @@ exports.sendFile = function(req, res, next){
         res.end();
     });
 };
+exports.renderResume = function(req, res, next){
+    res.render('front/resume');
+};

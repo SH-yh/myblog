@@ -42,6 +42,9 @@ router.get('/cases/:caseId/:caseName/:fileType', function(req, res, next){
 router.get('/storage/:fileName/:file', function(req, res, next){
     controller.sendFile(req, res, next);
 });
+router.get('/resume', function(req, res, next){
+    controller.renderResume(req, res, next);
+});
 router.get('/board', function(req, res, next){
     controller.renderBoard(req, res, next);
 });

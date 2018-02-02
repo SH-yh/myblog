@@ -59,6 +59,7 @@ body {
     overflow: hidden;
     white-space:normal;
 }
+/*案例块的适配样式*/
 @media all and (max-width:1280px) and (min-width:1024px){
     .body{
         max-width:96%;
@@ -73,6 +74,7 @@ body {
         margin-right:2%;
     }
 }
+
 @media all and (max-width: 1020px) {
     .body{
         max-width:96%;

@@ -46,7 +46,7 @@ body {
     padding: 16px 0;
     font-size: 14px;
     border-bottom: 1px dashed #efefef;
-    cursor: pointer;
+    cursor: pointer;/*鼠标样式*/
     white-space: nowrap;
     text-overflow: ellipsis;
     overflow: hidden;
